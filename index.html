@@ -11,7 +11,7 @@
             --background: #121212;
             --sidebar: #000000;
             --card-bg: #282828;
-            --primary: #1E90FF;
+            --primary: #1E90FF;  /* Changed from green to classy blue */
             --text: #FFFFFF;
             --text-secondary: #B3B3B3;
             --hover-bg: #404040;
@@ -28,24 +28,8 @@
             background-color: var(--background);
             color: var(--text);
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Mobile Menu Button */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            background: var(--primary);
-            border: none;
-            color: white;
-            padding: 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .sidebar {
@@ -53,8 +37,7 @@
             background-color: var(--sidebar);
             padding: 24px 12px;
             height: 100vh;
-            position: fixed;
-            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .profile-section {
@@ -99,9 +82,8 @@
         .main-content {
             flex-grow: 1;
             padding: 24px;
-            margin-left: 240px;
+            overflow-y: auto;
             background: linear-gradient(to bottom, #404040, var(--background) 400px);
-            min-height: 100vh;
         }
 
         .header {
@@ -117,7 +99,6 @@
             display: flex;
             gap: 20px;
             margin-top: 16px;
-            flex-wrap: wrap;
         }
 
         .contact-info a {
@@ -149,6 +130,17 @@
             background-color: var(--hover-bg);
         }
 
+        .card h3 {
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
         .screen {
             display: none;
         }
@@ -168,47 +160,6 @@
             font-size: 12px;
         }
 
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-                z-index: 999;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding-top: 60px;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
-        }
-
-        /* Tablet Responsive Styles */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -216,12 +167,7 @@
     </style>
 </head>
 <body>
-    <button class="menu-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
-
     <nav class="sidebar">
-        <!-- Sidebar content remains the same -->
         <div class="profile-section">
             <div class="profile-pic">
                 <img src="Aarohi.jpg" alt="Aarohi Singh">
@@ -238,9 +184,7 @@
     </nav>
 
     <main class="main-content">
-        <!-- All content sections remain exactly the same as in your original code -->
-        <!-- The existing content divs (welcome, education, experience, etc.) stay unchanged -->
-        <!-- Just copying a small part here for reference -->
+        <!-- Rest of the content sections remain the same as in your original code -->
         <div id="welcome" class="screen active">
             <div class="header">
                 <h1>Aarohi Singh</h1>
@@ -251,9 +195,143 @@
                     <a href="https://www.linkedin.com/in/aarohi-singh-421b08318" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 </div>
             </div>
-            <!-- Rest of the welcome content -->
+            <div class="cards-grid">
+                <div class="card" onclick="showScreen('projects')">
+                    <h3>Featured Projects</h3>
+                    <p>UAV Development, Stock Prediction, ATS System</p>
+                </div>
+                <div class="card" onclick="showScreen('experience')">
+                    <h3>Experience</h3>
+                    <p>DRDO, Saisha Infotech, Project Leadership</p>
+                </div>
+                <div class="card" onclick="showScreen('skills')">
+                    <h3>Technical Skills</h3>
+                    <p>Machine Learning, Robotics, Programming</p>
+                </div>
+            </div>
         </div>
-        <!-- Other screen divs remain the same -->
+
+        <div id="education" class="screen">
+            <div class="header">
+                <h1>Education</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>MIT-WPU Pune</h3>
+                    <p>Integrated B.tech in ECE-AIML</p>
+                    <p>B-Tech CGPA: 8.0</p>
+                    <p>Diploma CGPA: 9.35</p>
+                    <p>2019 - Present</p>
+                </div>
+                <div class="card">
+                    <h3>Mount St. Patrick Academy</h3>
+                    <p>ICSE (L.K.G. - 10th Standard)</p>
+                    <p>2007 - 2019</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="screen">
+            <div class="header">
+                <h1>Projects</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>UAV Project Lead</h3>
+                    <p>Built autonomous hovering system with control algorithms for stable UAV flight, integrating sensor systems and navigation protocols.</p>
+                </div>
+                <div class="card">
+                    <h3>Stocks Price Predictor</h3>
+                    <p>Created a FinTech app with Streamlit and Plotly, implementing time series analysis and financial metrics using yfinance.</p>
+                </div>
+                <div class="card">
+                    <h3>PDF Content Extractor</h3>
+                    <p>Implementing RAG, GAN, and LSTM architectures using MyPuPDF and Hugging Face frameworks.</p>
+                </div>
+                <div class="card">
+                    <h3>ATS from Scratch</h3>
+                    <p>Created an ATS for JD and resume matching using Streamlit and Flask.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="experience" class="screen">
+            <div class="header">
+                <h1>Experience</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>DRDO</h3>
+                    <p>Robotics Simulation Intern</p>
+                    <p>January to June 2024</p>
+                    <p>Developed UR5 and UR10 robotic arm simulations using PyBullet</p>
+                </div>
+                <div class="card">
+                    <h3>Saisha Infotech</h3>
+                    <p>Intern</p>
+                    <p>July 2021</p>
+                    <p>Worked with splicing and assembly techniques of optic fibre cables</p>
+                </div>
+                <div class="card">
+                    <h3>IdeaGo Competition</h3>
+                    <p>State Level Achievement</p>
+                    <p>Ranked third for supervised surveillance UAV project (2020)</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="skills" class="screen">
+            <div class="header">
+                <h1>Skills</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Programming</h3>
+                    <div class="skill-tag">C++</div>
+                    <div class="skill-tag">Python</div>
+                </div>
+                <div class="card">
+                    <h3>Machine Learning</h3>
+                    <div class="skill-tag">DNN</div>
+                    <div class="skill-tag">CNN</div>
+                    <div class="skill-tag">RNN</div>
+                    <div class="skill-tag">LSTM</div>
+                    <div class="skill-tag">GAN</div>
+                    <div class="skill-tag">RAG NLP</div>
+                </div>
+                <div class="card">
+                    <h3>Robotics</h3>
+                    <div class="skill-tag">PyBullet</div>
+                    <div class="skill-tag">TensorFlow</div>
+                    <div class="skill-tag">Gym Environment</div>
+                    <div class="skill-tag">PCB designing</div>
+                </div>
+                <div class="card">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-tag">Leadership</div>
+                    <div class="skill-tag">Teamwork</div>
+                    <div class="skill-tag">Problem Solving</div>
+                    <div class="skill-tag">Adaptability</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="certification" class="screen">
+            <div class="header">
+                <h1>Certification</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>NPTEL</h3>
+                    <p>Machine Learning and Deep Learning - Fundamentals and Applications</p>
+                    <p>IIT Guwahati</p>
+                </div>
+                <div class="card">
+                    <h3>Infosys Springboard</h3>
+                    <p>Open CV, 3D Processing</p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -261,31 +339,13 @@
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
-            document.querySelector(`.nav-item[onclick="showScreen('${screenId}')"]`).classList.add('active');
+            document.querySelector(.nav-item[onclick="showScreen('${screenId}')"]).classList.add('active');
             
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
             document.getElementById(screenId).classList.add('active');
-
-            // Close sidebar on mobile after selection
-            if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar').classList.remove('active');
-            }
         }
-
-        function toggleSidebar() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        }
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            if (window.innerWidth <= 768 && 
-                !event.target.closest('.sidebar') && 
-                !event.target.closest('.menu-toggle')) {
-                document.querySelector('.sidebar').classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
