@@ -3,115 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aarohi Singh Portfolio</title>
+  <meta name="description" content="Aarohi Singh - Data Analyst, Machine Learning Engineer, and Robotics Specialist Portfolio">
+  <title>Aarohi Singh | Portfolio</title>
   <style>
-    body {
+    :root {
+      --primary-color: #00ced1;
+      --secondary-color: #00ff7f;
+      --bg-dark: #1a1a1a;
+      --bg-darker: #1c1c1c;
+      --bg-card: #2b2b2b;
+      --text-light: #e0e0e0;
+      --spacing-sm: 10px;
+      --spacing-md: 20px;
+      --spacing-lg: 50px;
+      --border-radius: 10px;
+      --transition-speed: 0.3s;
+    }
+
+    * {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-      color: #e0e0e0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark), #2d2d2d);
+      color: var(--text-light);
+      line-height: 1.6;
       overflow-x: hidden;
     }
+
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: #1c1c1c;
-      padding: 10px 20px;
+      background: var(--bg-darker);
+      padding: var(--spacing-sm) var(--spacing-md);
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
       z-index: 1000;
+      backdrop-filter: blur(5px);
     }
-    header nav {
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    header nav a {
-      color: #00ced1;
+
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .nav-links a {
+      color: var(--primary-color);
       text-decoration: none;
-      margin: 0 15px;
-      font-size: 18px;
+      margin: 0 var(--spacing-sm);
+      font-size: 1.1rem;
+      transition: color var(--transition-speed);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius);
     }
-    header nav a:hover {
-      color: #00ff7f;
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+      background: rgba(255, 255, 255, 0.1);
     }
+
     .container {
-      margin-top: 70px;
-      padding: 20px;
+      max-width: 1200px;
+      margin: 90px auto 0;
+      padding: var(--spacing-md);
     }
+
     .section {
-      padding: 50px 20px;
+      padding: var(--spacing-lg) var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
     }
+
     .section h2 {
-      font-size: 28px;
-      color: #00ff7f;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      color: var(--secondary-color);
+      margin-bottom: var(--spacing-lg);
       text-align: center;
+      position: relative;
     }
-    .section p {
-      font-size: 18px;
-      line-height: 1.6;
-      text-align: center;
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 3px;
     }
-    #home img {
-      display: block;
-      margin: 20px auto;
-      width: 150px;
-      height: auto;
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
+      margin: var(--spacing-md) auto;
+      display: block;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 20px rgba(0, 206, 209, 0.3);
     }
-    .projects, .internships, .certificates, .skills {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+      justify-items: center;
     }
+
     .card {
-      background: #2b2b2b;
-      margin: 15px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-      max-width: 300px;
-      text-align: center;
+      background: var(--bg-card);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      transition: transform var(--transition-speed);
+      height: 100%;
     }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
     .card img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-md);
     }
+
     .card h3 {
-      font-size: 20px;
-      color: #00ced1;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-sm);
     }
-    .card p {
-      font-size: 16px;
-      margin-top: 10px;
+
+    .contact-info {
+      text-align: center;
+      margin: var(--spacing-md) 0;
     }
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #00ff7f;
+
+    .contact-info a {
+      color: var(--secondary-color);
       text-decoration: none;
+      transition: color var(--transition-speed);
     }
-    .card a:hover {
-      text-decoration: underline;
+
+    .contact-info a:hover {
+      color: var(--primary-color);
     }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
+    }
+
+    .skill-tag {
+      background: rgba(0, 206, 209, 0.1);
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
-      background: #1c1c1c;
-      color: #e0e0e0;
-      margin-top: 50px;
+      padding: var(--spacing-md);
+      background: var(--bg-darker);
+      margin-top: var(--spacing-lg);
     }
+
     @media screen and (max-width: 768px) {
-      header nav {
+      nav {
         flex-direction: column;
+        gap: var(--spacing-sm);
       }
-      header nav a {
-        margin: 5px 0;
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
       }
-      .card {
-        max-width: 100%;
+
+      .nav-links a {
+        margin: 5px;
+      }
+
+      .section {
+        padding: var(--spacing-md) var(--spacing-sm);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -119,8 +225,8 @@
 <body>
   <header>
     <nav>
-      <div>Aarohi Singh</div>
-      <div>
+      <div class="nav-brand">Aarohi Singh</div>
+      <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#education">Education</a>
         <a href="#experience">Experience</a>
@@ -134,110 +240,133 @@
   <div class="container">
     <section id="home" class="section">
       <h2>Welcome</h2>
-      <p>Hello! I'm Aarohi Singh, a Data Analyst and Scientist, Machine Learning Engineer, and Robotics Specialist.</p>
-      <img src="./Images/Aarohi Singh.png" alt="Aarohi Singh">
-      <p>Contact: 9373087401 | Email: <strong>aarohi.pune@gmail.com</strong></p>
-      <p>Location: Pune | Date of Birth: 08/06/2003</p>
-      <p>GitHub: <a href="https://github.com/aarohiin" target="_blank">github.com/aarohiin</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/aarohi-singh-421b08318" target="_blank">linkedin.com/in/aarohi-singh</a></p>
+      <img src="./Images/Aarohi Singh.png" alt="Aarohi Singh" class="profile-img">
+      <div class="contact-info">
+        <p>Data Analyst • Machine Learning Engineer • Robotics Specialist</p>
+        <p>📍 Pune | 📱 9373087401 | 📧 aarohi.pune@gmail.com</p>
+        <p>
+          <a href="https://github.com/aarohiin" target="_blank" rel="noopener noreferrer">GitHub</a> |
+          <a href="https://www.linkedin.com/in/aarohi-singh-421b08318" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+      </div>
     </section>
 
     <section id="education" class="section">
       <h2>Education</h2>
-      <div class="card">
-        <h3>MIT-WPU Pune</h3>
-        <p>Integrated B.tech in ECE-AIML</p>
-        <p>B-Tech CGPA: 8.0</p>
-        <p>2019 - Present</p>
-      </div>
-      <div class="card">
-        <h3>Mount St. Patrick Academy</h3>
-        <p>ICSE (L.K.G. - 10th Standard)</p>
-        <p>2007 - 2019</p>
+      <div class="grid">
+        <div class="card">
+          <h3>MIT-WPU Pune</h3>
+          <p>Integrated B.Tech in ECE-AIML</p>
+          <p>CGPA: 8.0</p>
+          <p>2019 - Present</p>
+        </div>
+        <div class="card">
+          <h3>Mount St. Patrick Academy</h3>
+          <p>ICSE (L.K.G. - 10th Standard)</p>
+          <p>2007 - 2019</p>
+        </div>
       </div>
     </section>
 
     <section id="experience" class="section">
       <h2>Experience</h2>
-      <div class="projects">
+      <div class="grid">
         <div class="card">
-          <h3>Saisha Infotech Remote Internship</h3>
-          <p>July 2021</p>
-          <p>Worked with splicing and assembly techniques of optic fibre cables. Learned the hardware of routers and various products manufactured by the company.</p>
+          <h3>Robotics Simulation Intern</h3>
+          <p><strong>DRDO</strong></p>
+          <p>January - June 2024</p>
+          <p>Developed UR5 and UR10 robotic arm simulations using PyBullet, implementing kinematics, dynamics, and control algorithms with Reinforcement Learning.</p>
         </div>
         <div class="card">
-          <h3>Robotics Simulation Intern at DRDO</h3>
-          <p>January to June 2024</p>
-          <p>Developed UR5 and UR10 robotic arm simulations using PyBullet, implementing kinematics, dynamics, and control algorithms, for Research purposes, Using Reinforcement Learning.</p>
+          <h3>Technical Intern</h3>
+          <p><strong>Saisha Infotech</strong></p>
+          <p>July 2021</p>
+          <p>Specialized in fiber optic cable splicing and router hardware assembly techniques.</p>
         </div>
       </div>
     </section>
 
     <section id="projects" class="section">
       <h2>Projects</h2>
-      <div class="projects">
+      <div class="grid">
         <div class="card">
-          <img src="./Images/drone_project.png" alt="UAV Project">
+          <img src="./Images/drone_project.png" alt="UAV Project - Autonomous Hovering System">
           <h3>UAV Project</h3>
-          <p>Built autonomous hovering system with control algorithms for stable UAV flight, integrating sensor systems and navigation protocols for precise path following.</p>
-          <p>Ranked third in State-Level IdeaGo Competition (2020)</p>
+          <p>Built autonomous hovering system with control algorithms for stable UAV flight.</p>
+          <p><strong>Achievement:</strong> Third place in State-Level IdeaGo Competition (2020)</p>
         </div>
         <div class="card">
-          <img src="./Images/Stocks Project.png" alt="Stocks Price Predictor">
-          <h3>Stocks Price Predictor</h3>
-          <p>Created a FinTech app with Streamlit and Plotly, implementing time series analysis and financial metrics using yfinance.</p>
+          <img src="./Images/Stocks Project.png" alt="Stock Price Prediction Application">
+          <h3>Stock Price Predictor</h3>
+          <p>FinTech application using Streamlit and Plotly for time series analysis and financial metrics visualization.</p>
         </div>
         <div class="card">
-          <h3>PDF Content Extractor and Chatbot</h3>
-          <p>Implementing RAG, GAN, and LSTM architectures using MyPuPDF and Hugging Face frameworks (Project In Progress).</p>
+          <img src="./Images/ATS_RESUME_PROJECT.png" alt="ATS Resume Scanner">
+          <h3>ATS Resume Scanner</h3>
+          <p>Developed an Applicant Tracking System for job description and resume matching using Streamlit and Flask.</p>
         </div>
         <div class="card">
-          <img src="./Images/ATS_RESUME_PROJECT.png" alt="ATS-from-Scratch">
-          <h3>ATS-from-Scratch</h3>
-          <p>Created an ATS for JD and resume matching using both Streamlit and Flask.</p>
+          <h3>PDF Content Extractor</h3>
+          <p>Intelligent document processing system implementing RAG, GAN, and LSTM architectures (In Progress).</p>
         </div>
       </div>
     </section>
 
     <section id="certifications" class="section">
       <h2>Certifications</h2>
-      <div class="certificates">
+      <div class="grid">
         <div class="card">
-          <h3>NPTEL</h3>
-          <p>Cleared examination for certification on "Machine Learning and Deep Learning - Fundamentals and Applications" from IIT Guwahati</p>
+          <h3>NPTEL Certification</h3>
+          <p>Machine Learning and Deep Learning - Fundamentals and Applications</p>
+          <p><em>IIT Guwahati</em></p>
         </div>
         <div class="card">
           <h3>Infosys Springboard</h3>
-          <p>Certifications in:</p>
-          <p>Open CV</p>
-          <p>3D Processing</p>
-          <p>Fundamentals of NLP: Preprocessing Text Using NLTK & SpaCy</p>
+          <div class="skills-list">
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">3D Processing</span>
+            <span class="skill-tag">NLP with NLTK & SpaCy</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="skills" class="section">
       <h2>Skills</h2>
-      <div class="skills">
+      <div class="grid">
         <div class="card">
-          <h3>Technical Skills</h3>
-          <p>Programming: C++, Python</p>
-          <p>Machine Learning: DNN, CNN, RNN, LSTM, GAN, RAG, NLP</p>
-          <p>Robotics: PyBullet, TensorFlow, Gym Environment, PCB designing</p>
-          <p>Domains: Machine Learning, Robotics, Electronics, FinTech</p>
+          <h3>Technical Expertise</h3>
+          <div class="skills-list">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">DNN</span>
+            <span class="skill-tag">CNN</span>
+            <span class="skill-tag">RNN</span>
+            <span class="skill-tag">LSTM</span>
+            <span class="skill-tag">GAN</span>
+            <span class="skill-tag">RAG</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">PyBullet</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PCB Design</span>
+          </div>
         </div>
         <div class="card">
-          <h3>Soft Skills</h3>
-          <p>Leadership and Teamwork</p>
-          <p>Creative Problem Solving</p>
-          <p>Adaptability and Outspokenness</p>
+          <h3>Professional Skills</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Team Collaboration</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Adaptability</span>
+            <span class="skill-tag">Communication</span>
+          </div>
         </div>
       </div>
     </section>
-
-    <footer>
-      <p>&copy; 2025 Aarohi Singh. All Rights Reserved.</p>
-    </footer>
   </div>
+
+  <footer>
+    <p>&copy; 2025 Aarohi Singh. All rights reserved.</p>
+  </footer>
 </body>
 </html>
