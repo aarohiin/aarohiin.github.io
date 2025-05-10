@@ -1,331 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aarohi Singh Portfolio</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #000000, #141414);
-        color: #e0e0e0;
-        overflow-x: hidden;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural UAV Portfolio</title>
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
 
-      header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: #000000;
-        padding: 10px 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-      }
+  <!-- Styles -->
+  <style>
+    :root {
+      --primary: #00ffaa;
+      --secondary: #0088ff;
+      --dark: #0a0f18;
+      --darker: #050a14;
+      --light: #e0e0e0;
+      --accent: #ff3e88;
+    }
 
-      header nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background-color: var(--darker);
+      color: var(--light);
+      overflow-x: hidden;
+    }
 
-      header nav a {
-        color: #00ced1;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 18px;
-        transition: color 0.3s ease;
-      }
+    #particles-js, #background-canvas {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
 
-      header nav a:hover {
-        color: #00ff7f;
-      }
+    nav {
+      background: rgba(5, 10, 20, 0.8);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 20px rgba(0, 255, 170, 0.1);
+    }
 
-      .container {
-        max-width: 1200px;
-        margin: 70px auto 0;
-        padding: 20px;
-      }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-      .section {
-        padding: 50px 20px;
-        margin-bottom: 30px;
-      }
+    .nav-link {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-      .section h2 {
-        font-size: 32px;
-        color: #00ff7f;
-        margin-bottom: 30px;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
+    .nav-link:hover {
+      color: var(--primary);
+      transform: scale(1.1);
+    }
 
-      .section p {
-        font-size: 18px;
-        line-height: 1.6;
-        text-align: center;
-        margin-bottom: 20px;
-      }
+    main {
+      padding: 6rem 2rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-      #home img {
-        display: block;
-        margin: 20px auto;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
-      }
+    section {
+      margin-bottom: 4rem;
+    }
 
-      .projects,
-      .internships,
-      .certificates,
-      .skills {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-      }
+    h1, h2, h3 {
+      color: var(--primary);
+    }
 
-      .education-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-      }
+    h1 {
+      font-size: 2.8rem;
+    }
 
-      .card {
-        background: #000000;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-        max-width: 320px;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #1a1a1a;
-      }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid var(--secondary);
+      display: inline-block;
+    }
 
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
-        border-color: #00ff7f;
-      }
+    .typing {
+      border-right: 2px solid var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
 
-      .card img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 15px;
-      }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary) }
+    }
 
-      .card h3 {
-        font-size: 22px;
-        color: #00ced1;
-        margin-bottom: 15px;
-      }
+    .card {
+      background: rgba(10, 15, 24, 0.8);
+      border: 1px solid rgba(0, 136, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-      .card p {
-        font-size: 16px;
-        margin: 10px 0;
-        line-height: 1.5;
-      }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 20px rgba(0, 255, 170, 0.2);
+    }
 
-      .card a {
-        display: inline-block;
-        margin-top: 15px;
-        color: #00ff7f;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s ease;
-      }
+    .card-content-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
 
-      .card a:hover {
-        color: #00ced1;
-        text-decoration: underline;
-      }
+    .card-content-text {
+      flex: 1;
+    }
 
-      .card ul {
-        text-align: left;
-        padding-left: 20px;
-        margin: 0;
-      }
+    .card-content-images {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
 
-      .card li {
-        font-size: 16px;
-        margin: 10px 0;
-        line-height: 1.5;
-      }
+    .card-content-images img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+    }
 
-      footer {
-        text-align: center;
-        padding: 30px;
-        background: #000000;
-        color: #e0e0e0;
-        margin-top: 50px;
-      }
+    footer {
+      background: rgba(5, 10, 20, 0.8);
+      padding: 2rem;
+      text-align: center;
+      color: var(--light);
+    }
 
-      @media screen and (max-width: 768px) {
-        header nav {
-          flex-direction: column;
-          text-align: center;
-        }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-        header nav a {
-          margin: 8px 0;
-        }
+    a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
 
-        .card {
-          max-width: 100%;
-          margin: 15px 10px;
-        }
+<body>
+  <div id="particles-js"></div>
+  <canvas id="background-canvas"></canvas>
 
-        .section {
-          padding: 30px 15px;
-        }
-
-        #home img {
-          width: 150px;
-          height: 150px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <div>Aarohi Singh</div>
-        <div>
-          <a href="#home">Home</a>
-          <a href="#education">Education</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#certifications">Certifications</a>
-          <a href="#skills">Skills</a>
-        </div>
-      </nav>
-    </header>
-
-    <div class="container">
-      <section id="home" class="section">
-        <h2>Welcome</h2>
-        <p>Hello! I'm Aarohi Singh, a Data Analyst and Scientist, Machine Learning Engineer, and Robotics Specialist.</p>
-        <img src="./Images/aar.png" alt="Aarohi Singh">
-        <p>Contact: 9373087401 | Email: <strong>aarohi.pune@gmail.com</strong></p>
-        <p>Location: Pune | Date of Birth: 08/06/2003</p>
-        <p>GitHub: <a href="https://github.com/aarohiin" target="_blank">github.com/aarohiin</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/aarohi-singh-421b08318" target="_blank">linkedin.com/in/aarohi-singh</a></p>
-      </section>
-
-      <section id="education" class="section">
-        <h2>Education</h2>
-        <div class="education-container">
-          <div class="card">
-            <h3>MIT-WPU Pune</h3>
-            <p>Integrated B.tech in ECE-AIML</p>
-            <p>B-Tech CGPA: 8.0</p>
-            <p>2019 - Present</p>
-          </div>
-          <div class="card">
-            <h3>Mount St. Patrick Academy</h3>
-            <p>ICSE (L.K.G. - 10th Standard)</p>
-            <p>2007 - 2019</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" class="section">
-        <h2>Experience</h2>
-        <div class="projects">
-          <div class="card">
-            <h3>Saisha Infotech Remote Internship</h3>
-            <p>July 2021</p>
-            <p>Worked with splicing and assembly techniques of optic fibre cables. Learned the hardware of routers and various products manufactured by the company.</p>
-          </div>
-          <div class="card">
-            <h3>Robotics Simulation Intern at DRDO</h3>
-            <p>January to June 2024</p>
-            <p>Developed UR5 and UR10 robotic arm simulations using PyBullet, implementing kinematics, dynamics, and control algorithms, for Research purposes, Using Reinforcement Learning.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="section">
-        <h2>Projects</h2>
-        <div class="projects">
-          <div class="card">
-            <img src="./Images/drone_project.png" alt="UAV Project">
-            <h3>UAV Project</h3>
-            <p>Built autonomous hovering system with control algorithms for stable UAV flight, integrating sensor systems and navigation protocols for precise path following.</p>
-            <p>Ranked third in State-Level IdeaGo Competition (2020)</p>
-          </div>
-          <div class="card">
-            <img src="./Images/Stocks Project.png" alt="Stocks Price Predictor">
-            <h3>Stocks Price Predictor</h3>
-            <p>Created a FinTech app with Streamlit and Plotly, implementing time series analysis and financial metrics using yfinance.</p>
-          </div>
-          <div class="card">
-            <h3>PDF Content Extractor and Chatbot</h3>
-            <p>Implementing RAG, GAN, and LSTM architectures using MyPuPDF and Hugging Face frameworks (Project In Progress).</p>
-          </div>
-          <div class="card">
-            <img src="./Images/ATS_RESUME_PROJECT.png" alt="ATS-from-Scratch">
-            <h3>ATS-from-Scratch</h3>
-            <p>Created an ATS for JD and resume matching using both Streamlit and Flask.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="certifications" class="section">
-        <h2>Certifications</h2>
-        <div class="certificates">
-          <div class="card">
-            <h3>NPTEL</h3>
-            <p>Cleared examination for certification on "Machine Learning and Deep Learning - Fundamentals and Applications" from IIT Guwahati</p>
-          </div>
-          <div class="card">
-            <h3>Infosys Springboard</h3>
-            <p>Certifications in:</p>
-            <p>Open CV</p>
-            <p>3D Processing</p>
-            <p>Fundamentals of NLP: Preprocessing Text Using NLTK & SpaCy</p>
-          </div>
-          <div class="card">
-            <img src="./Images/cert.png" alt="Great Learning Certificate">
-            <h3>Great Learning Certificate</h3>
-            <p>Certificate ID: VQFYSEIH</p>
-            <a href="https://www.mygreatlearning.com/certificate/VQFYSEIH" target="_blank">Verify Certificate</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="section">
-        <h2>Skills</h2>
-        <div class="skills">
-          <div class="card">
-            <h3>Technical Skills</h3>
-            <ul>
-              <li>Programming: C++, Python</li>
-              <li>Machine Learning: DNN, CNN, RNN, LSTM, GAN, RAG, NLP</li>
-              <li>Robotics: PyBullet, TensorFlow, Gym Environment, PCB designing</li>
-              <li>Domains: Machine Learning, Robotics, Electronics, FinTech</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Soft Skills</h3>
-            <ul>
-              <li>Leadership and Teamwork</li>
-              <li>Creative Problem Solving</li>
-              <li>Adaptability and Outspokenness</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <p>&copy;Aarohi Singh</p>
-      </footer>
+  <nav>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#certification" class="nav-link">Certification</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#achievements" class="nav-link">Achievements</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </div>
-  </body>
+  </nav>
+
+  <main>
+    <section id="home" style="text-align:center">
+      <h1 class="typing">Aarohi M. Singh</h1>
+      <p class="typing" style="animation-delay: 1s;">Reinforcement Learning Engineer</p>
+    </section>
+
+    <section id="education"><h2>Education</h2></section>
+    <section id="certification"><h2>Certification</h2></section>
+    <section id="skills"><h2>Skills</h2></section>
+    <section id="achievements"><h2>Achievements</h2></section>
+    <section id="experience"><h2>Experience</h2></section>
+    <section id="projects"><h2>Projects</h2></section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>
+          AAROHI M. SINGH<br>
+          UAV Engineer | Pune<br>
+          <a href="mailto:aarohi.pune@gmail.com">aarohi.pune@gmail.com</a> | 9373087401<br>
+          <a href="https://github.com/aarohiin" target="_blank">GitHub</a> |
+          <a href="https://www.linkedin.com/in/aarohi-singh-421b08318/" target="_blank">LinkedIn</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Aarohi M. Singh. All rights reserved.
+  </footer>
+
+  <script>
+    // Neural background with Three.js
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('background-canvas');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const group = new THREE.Group();
+      const nodes = [];
+
+      for (let i = 0; i < 50; i++) {
+        const sphere = new THREE.Mesh(
+          new THREE.SphereGeometry(0.15, 8, 8),
+          new THREE.MeshBasicMaterial({ color: 0x0055aa })
+        );
+        sphere.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20);
+        nodes.push(sphere);
+        group.add(sphere);
+      }
+
+      for (let i = 0; i < 100; i++) {
+        const mat = new THREE.LineBasicMaterial({ color: 0x004488 });
+        const pointA = nodes[Math.floor(Math.random() * nodes.length)].position;
+        const pointB = nodes[Math.floor(Math.random() * nodes.length)].position;
+        const geo = new THREE.BufferGeometry().setFromPoints([pointA, pointB]);
+        const line = new THREE.Line(geo, mat);
+        group.add(line);
+      }
+
+      scene.add(group);
+      camera.position.z = 30;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        group.rotation.x += 0.001;
+        group.rotation.y += 0.002;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+
+      // Particles.js
+      particlesJS.load('particles-js', 'particles.json', () => {
+        console.log('Particles.js loaded');
+      });
+
+      // Fetch and render JSON data
+      fetch('data.json')
+        .then(res => res.json())
+        .then(data => {
+          const sections = ['education', 'certification', 'skills', 'achievements', 'experience', 'projects'];
+          sections.forEach(id => {
+            const section = document.getElementById(id);
+            if (data[id]?.length) {
+              data[id].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                  <div class="card-content-wrapper">
+                    <div class="card-content-text">
+                      <h3>${item.title || item.role || item.name || 'Item'}</h3>
+                      <p>${(item.description || '').replace(/\n/g, '<br>')}</p>
+                    </div>
+                    <div class="card-content-images">
+                      ${(item.media?.images || []).map(src => `<img src="${src}" alt="media image">`).join('')}
+                    </div>
+                  </div>
+                `;
+                // Add links
+                if (item.links) {
+                  item.links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link;
+                    a.target = '_blank';
+                    a.textContent = 'Link';
+                    card.appendChild(document.createElement('br'));
+                    card.appendChild(a);
+                  });
+                }
+                section.appendChild(card);
+              });
+            }
+          });
+        })
+        .catch(err => console.error('Error loading JSON:', err));
+    });
+  </script>
+</body>
 </html>
