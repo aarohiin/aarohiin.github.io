@@ -159,5 +159,43 @@
         "https://github.com/aarohiin/AI-Blog-Assistant"
       ]
     }
+  ],
+  "medium": [
+    {
+      "title": "AI-Powered Hexacopter Simulation for Smart People Detection",
+      "description": "What if you could train and test AI-powered drones in a risk-free, virtual environment?\n\nI\u2019ve built a Hexacopter Simulation for Smart People Detection\u2014an open-source Python-based project that enables researchers and developers to:\n1. Simulate drone flight dynamics in a virtual 3D environment\n2. Integrate AI-driven people detection algorithms (YOLO, OpenCV, etc.)\n 3. Test and refine models\u2014without hardware costs or safety concerns\n\n\nThis project accelerates AI model development, making drone-based AI research more accessible, scalable, and efficient.",
+      "media": {
+        "images": [
+          "media\\f583015945f149a9bedb20f7fb49f5d4_AI-Powered Hexacopter Simulation for Smart People Detection.jpeg"
+        ]
+      },
+      "links": [
+        "https://medium.com/@aarohi.pune/ai-powered-hexacopter-simulation-for-smart-people-detection-792283ee045a"
+      ]
+    },
+    {
+      "title": "AI in Robotics: Leveraging Gym for Simulation and Development",
+      "description": "Testing and refining AI-driven robotic models can be costly and risky in real-world environments. In my latest article, I explore how OpenAI Gym provides a powerful simulation platform for safe, cost-effective, and efficient robotics development.\n\nFrom reinforcement learning to Sim2Real transfer, discover how simulations accelerate innovation in robotics.",
+      "media": {
+        "images": [
+          "media\\7ecb8f6d954d48689832f7707f68b147_AI in Robotics Leveraging Gym for Simulation and Development.jpeg"
+        ]
+      },
+      "links": [
+        "https://medium.com/@aarohi.pune/ai-in-robotics-leveraging-gym-for-simulation-and-development-b15a348d870c"
+      ]
+    },
+    {
+      "title": "Prompt Robotic Simulation: Creating Entire Robot Environments with a Single Command",
+      "description": "What if building a robotic simulation was as easy as describing it in plain English?\n\nIn my blog, I dive into Prompt Robotic Simulation \u2014 a groundbreaking approach where large language models generate full simulation environments from a single natural language prompt. This shift is redefining how we prototype, experiment, and teach in the world of robotics.\n\nFrom PyBullet to reinforcement learning, discover how we're bridging the gap between idea and implementation in seconds.",
+      "media": {
+        "images": [
+          "media\\3ba3210d9461406f9261e00b70b381f1_prompt.png"
+        ]
+      },
+      "links": [
+        "https://medium.com/@aarohi.pune/prompt-robotic-simulation-creating-entire-robot-environments-with-a-single-command-3479218fda6c"
+      ]
+    }
   ]
 }
