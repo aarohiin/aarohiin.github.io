@@ -11,7 +11,7 @@
     },
     {
       "title": "MIT-WPU, Pune- B.Tech ",
-      "description": "ECE AIML, CGPA: 8.7 (2022\u20132025)"
+      "description": "ECE AIML, CGPA: 8.0 (2022\u20132025)"
     }
   ],
   "certification": [
@@ -49,7 +49,7 @@
   "skills": [
     {
       "title": "Programming",
-      "description": "1. Python.\n2. C++"
+      "description": "1. Python.\n2. C++\n2. Matlab"
     },
     {
       "title": "Artificial Intelligence and Machine Learning",
@@ -57,7 +57,7 @@
     },
     {
       "title": "Robotics",
-      "description": "1. PyBullet\n2. TensorFlow\n3. Gym Environment\n4. PCB designing\n5. Isaac Sim \n6. Isaac Lab\n7. Webots\n8. Reinforcement Learning"
+      "description": "1. PyBullet\n2. TensorFlow\n3. Gym Environment\n4. PCB designing\n5. Isaac Sim \n6. Isaac Lab\n7. Webots\n8. Reinforcement Learning\n9. ROS2\n10. Gazebo\n11. Swarm Robotics\n12. Aerial-Ground Coordination\n13. Quadruped Robotics\n14. UR5 and UR10 Robotic Arms Simulation\n15. Industrial Task Simulation\n16. MATLAB Robotics Toolbox"
     }
   ],
   "achievements": [
