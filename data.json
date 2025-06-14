@@ -158,6 +158,18 @@
       "links": [
         "https://github.com/aarohiin/AI-Blog-Assistant"
       ]
+    },
+    {
+      "title": "Portfolio Website: aarohiin.github.io",
+      "description": "This project is a personal portfolio management system that blends front-end design and DBMS principles. It allows you to:\n\nDisplay your portfolio dynamically on a static webpage (pp.html)\n\nStore data in a structured JSON format (data.json)\n\nUse a Streamlit dashboard (data.py) to manage entries like projects, skills, certifications, etc.\n\nTech Stack:\nFrontend: HTML5, CSS3, JavaScript, Three.js, GSAP, Particles.js\n\nBackend/DBMS Interface: Python (Streamlit)\n\nDatabase Equivalent: JSON file (acts like NoSQL DB)\n\nMedia Management: Local media/ folder\n\nData Model: Structured keys for each section (skills, projects, education, etc.)",
+      "media": {
+        "images": [
+          "media\\368fe1f291ef43159bcc38cca7e727af_Screenshot 2025-06-14 171547.png"
+        ]
+      },
+      "links": [
+        "https://github.com/aarohiin/aarohiin.github.io"
+      ]
     }
   ],
   "medium": [
