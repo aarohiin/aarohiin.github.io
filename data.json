@@ -91,7 +91,7 @@
       }
     },
     {
-      "title": "DRDO \u2013 Reinforcement Learning Engineer (1 April 2025 - Present) ",
+      "title": "DRDO \u2013 Reinforcement Learning Engineer (1 April 2025 - 20 October 2025, 6 months) ",
       "description": "1. Developed realistic quadruped robotic simulations using ROS2, Webots, and Isaac Sim to model locomotion and environment interaction.\n2. Implemented sensor integration and control architectures to simulate real-world robotic perception and actuation.\n3. Explored and evaluated swarm robotics algorithms for cooperative behavior among multiple quadrupeds and drones.\n4. Simulated aerial-ground coordination scenarios to study task distribution, communication, and path planning.\n5. Conducted comparative analysis of simulation frameworks to identify trade-offs in scalability, fidelity, and computational performance."
     }
   ],
@@ -211,4 +211,5 @@
     }
   ]
 }
+
 
