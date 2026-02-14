@@ -1,215 +1,238 @@
 {
-  "education": [
-    {
-      "title": "MIT-WPU, Pune- Diploma",
-      "description": "ECE (AI/ML), CGPA: 9.35 (2019\u20132022) ",
-      "media": {
-        "images": [
-          "media\\9ece31637c22412d8bfe2bb6d95f14ff_diploma.jpg"
-        ]
+  "hero": {
+    "name": "Aarohi M. Singh",
+    "title": "An engineer who explores everyday",
+    "subtitles": [
+      "An engineer who explores everyday"
+    ],
+    "stats": [
+      {
+        "label": "Training Pipelines",
+        "value": "12+"
+      },
+      {
+        "label": "LLMs Fine-tuned",
+        "value": "5+"
+      },
+      {
+        "label": "CV Models",
+        "value": "8+"
+      },
+      {
+        "label": "Models Quantized",
+        "value": "15+"
+      },
+      {
+        "label": "Robotics Systems",
+        "value": "4+"
+      },
+      {
+        "label": "MLOps Pipelines",
+        "value": "6+"
       }
-    },
-    {
-      "title": "MIT-WPU, Pune- B.Tech ",
-      "description": "ECE AIML, CGPA: 8.79 (2022\u20132025)"
-    }
-  ],
-  "certification": [
-    {
-      "title": "Artificial Intelligence Fundamentals",
-      "description": "Completed six AI modules successfully, enhancing my expertise in Artificial Intelligence, Machine Learning, NLP, AI Ethics, and more. These modules have been a wonderful learning experience, enabling me to understand AI and its applications in real life in a better way.\n\nCompleted Modules:\n1. Introduction to Artificial Intelligence\n2. Natural Language Processing and Its Applications\n3. Machine Learning and Deep Learning\n4. AI Ethics\n5. Run AI Models with IBM Watson Studio\n6. Your Future in AI: The Job Landscape\n",
-      "media": {
-        "images": [
-          "media\\a5fa0eba18a34a3380cdb3fe6b1e9219_IBM.png"
+    ]
+  },
+  "about": {
+    "philosophies": [
+      {
+        "title": "Design Philosophy",
+        "description": "Intelligence Engineering - From Research to Production. The complete ML lifecycle: Research → Training → Optimization → Deployment → Monitoring."
+      }
+    ],
+    "bio": "AI/ML and Robotics engineer building autonomous systems through reinforcement learning, perception pipelines, and physics-based simulation. Core capabilities include Reinforcement Learning for control and navigation, Robotic simulation architecture, LiDAR & vision-based perception integration, and End-to-end ML pipelines."
+  },
+  "skills": {
+    "LLM Engineering": [
+      "Fine-Tuning (Full, LoRA, Prefix Tuning)",
+      "Model Quantization (PTQ, QAT, Dynamic)",
+      "Knowledge Distillation (BERT → DistilBERT)",
+      "Prompt Engineering (CoT, ToT, RAG)",
+      "RAG Systems (Vector DBs, Embeddings)",
+      "Training Infrastructure (DDP, DeepSpeed)"
+    ],
+    "Computer Vision": [
+      "Object Detection (YOLOv5/v8, Faster R-CNN)",
+      "Tracking (DeepSORT, Kalman Filters)",
+      "Segmentation (U-Net, DeepLabv3+, Mask R-CNN)",
+      "Pose Estimation (OpenPose, MediaPipe)",
+      "Generative Models (GANs, Stable Diffusion)"
+    ],
+    "Robotics & Simulation": [
+      "PyBullet & Isaac Sim",
+      "ROS2 & Gazebo",
+      "Reinforcement Learning (PPO, DQN)",
+      "Sim-to-Real Transfer",
+      "Swarm Robotics"
+    ],
+    "MLOps & Tools": [
+      "Docker & Kubernetes",
+      "CI/CD Pipelines",
+      "MLflow",
+      "ONNX Runtime",
+      "TensorRT",
+      "Python, C++, CUDA"
+    ]
+  },
+  "projects": {
+    "featured": [
+      {
+        "title": "GPT-2 Fine-tuning Project",
+        "category": "LLM",
+        "metrics": [
+          "Original: 1.5B params | 6GB VRAM",
+          "Quantized: INT8 | 1.5GB VRAM",
+          "LoRA Fine-tuned: +12% task accuracy"
+        ],
+        "description": "Optimization of GPT-2 for specific domain tasks using LoRA and quantization techniques.",
+        "links": []
+      },
+      {
+        "title": "Real-Time Object Detection",
+        "category": "Computer Vision",
+        "metrics": [
+          "Architecture: Custom YOLOv8",
+          "Inference: 45 FPS (edge device)",
+          "Accuracy: 94.3% mAP"
+        ],
+        "description": "High-performance object detection system optimized for edge deployment.",
+        "links": []
+      },
+      {
+        "title": "End-to-End ML Pipeline",
+        "category": "MLOps",
+        "metrics": [
+          "Docker + Kubernetes deployment",
+          "Automated retraining (MLflow)",
+          "A/B testing framework"
+        ],
+        "description": "Scalable MLOps pipeline for automated model lifecycle management.",
+        "links": []
+      }
+    ],
+    "all": [
+      {
+        "title": "Hexacopter Simulation with YOLOv8",
+        "category": "Robotics/CV",
+        "description": "Developed a UAV simulation in PyBullet with real-time YOLOv8 people detection. Implemented autonomous search-and-detect logic and validated in simulated disaster scenarios.",
+        "links": [
+          "https://github.com/aarohiin/Hexacopter-virtual-simulation-for-people-detection"
         ]
       },
-      "links": [
-        "https://lnkd.in/gRRRDwH8"
-      ]
-    },
-    {
-      "title": "SQL for Data Science",
-      "description": "This experience exposed me to the basics of ML\u2014data preprocessing, model construction, evaluation metrics, and applications in real life.\n\nLikely Learned:\n1. Supervised & Unsupervised Learning \u2013 Getting to know algorithms such as Linear Regression, Decision Trees, and Clustering.\n2. Data Preprocessing \u2013 Data handling for missing values, feature engineering, and data normalization.\n3. Real-World Applications \u2013 Applying to actual-world datasets, training models, and improving performance.",
-      "media": {
-        "images": [
-          "media\\f5beb89c5b16484caa90a0b561b958c8_SQL.jpg"
+      {
+        "title": "Stocks Price Predictor",
+        "category": "ML/Analytic",
+        "description": "Web app for NSE stock analysis and prediction using Random Forest Regression. Features technical indicators (RSI, MACD) and news sentiment analysis.",
+        "links": [
+          "https://github.com/aarohiin/Stock-Prediction-and-Analysis"
+        ]
+      },
+      {
+        "title": "ATS from Scratch",
+        "category": "NLP",
+        "description": "Custom Applicant Tracking System using NLP to analyze resumes against job descriptions, providing matching scores and detailed feedback.",
+        "links": [
+          "https://github.com/aarohiin/ATS-from-Scratch"
+        ]
+      },
+      {
+        "title": "AI Blog Assistant",
+        "category": "LLM",
+        "description": "Streamlit app generating blog posts using NVIDIA's LLaMA-3.1-Nemotron-70B-Instruct, designed for content creators.",
+        "links": [
+          "https://github.com/aarohiin/AI-Blog-Assistant"
+        ]
+      },
+      {
+        "title": "Gemini Clone",
+        "category": "LLM/Web",
+        "description": "A clone of the Gemini interface/system, demonstrating integration with large language models.",
+        "links": [
+          "https://github.com/aarohiin/Gemini-Clone"
+        ]
+      },
+      {
+        "title": "Resume Screening",
+        "category": "NLP",
+        "description": "Basic NLP resume screening project for automated candidate evaluation.",
+        "links": [
+          "https://github.com/aarohiin/Resume-Screening"
+        ]
+      },
+      {
+        "title": "Audio Processing",
+        "category": "DSP/Python",
+        "description": "Audio processing utilities including autotune, BPM change, reverb, and bass boost using pydub and numpy.",
+        "links": [
+          "https://github.com/aarohiin/Audio-processing"
+        ]
+      },
+      {
+        "title": "Portfolio Website",
+        "category": "Web/System",
+        "description": "Personal portfolio management system blending front-end design with a JSON-based data model and Streamlit dashboard.",
+        "links": [
+          "https://github.com/aarohiin/aarohiin.github.io"
         ]
       }
-    },
-    {
-      "title": "NPTEL IIT Guwahati",
-      "description": "Cleared examination to get certification on \u201cMachine Learning and Deep Learning - Fundamentals and Applications\u201d from IIT Guwahati. ",
-      "media": {
-        "images": [
-          "media\\7e457d255b8b4a0d8f4429f06a00a621_Screenshot_10-5-2025_527_.jpeg"
-        ]
-      }
-    }
-  ],
-  "skills": [
-    {
-      "title": "Programming",
-      "description": "1. Python.\n2. C++\n2. Matlab"
-    },
-    {
-      "title": "Artificial Intelligence and Machine Learning",
-      "description": "1. Deep Neural Network, Convolutional Neural Network, Recurrent Neural Network\n2. Long Short Term Memory \n3. Generative Adversarial Network \n4. Retrieval Augmented Generation \n5. Natural Language Processing\n6. Generative AI\n7. Large Language Models\n8. Transformers\n9. Docker\n10. Hugging Face\n11. Reinforcement Learning"
-    },
-    {
-      "title": "Robotics",
-      "description": "1. PyBullet\n2. TensorFlow\n3. Gym Environment\n4. PCB designing\n5. Isaac Sim \n6. Isaac Lab\n7. Webots\n8. Reinforcement Learning\n9. ROS2\n10. Gazebo\n11. Swarm Robotics\n12. Aerial-Ground Coordination\n13. Quadruped Robotics\n14. UR5 and UR10 Robotic Arms Simulation\n15. Industrial Task Simulation\n16. MATLAB Robotics Toolbox"
-    }
-  ],
-  "achievements": [
-    {
-      "title": "State-Level IdeaGo Competition ",
-      "description": "1. Conceptualized and developed a supervised UAV-based surveillance system aimed at monitoring hazardous or restricted environments.\n2. Integrated real-time video streaming and basic object detection to enhance situational awareness during surveillance operations.\n3. Focused on safety protocols and remote control features to minimize human exposure in dangerous scenarios.\n4. Collaborated in a multidisciplinary team to design, test, and present the project in a competitive academic setting.\n5. Secured 3rd place among several teams in a 2020 competition for innovation and practical application in drone-based hazard management.",
-      "media": {
-        "images": [
-          "media\\19cb1c10b09e4eee81930fec7acd3f8d_trophy.jpg"
-        ]
-      }
-    }
-  ],
+    ]
+  },
   "experience": [
     {
-      "title": "Saisha Infotech Intern (Internship, 5-July-2021 to 17-July-2021)",
-      "description": "1. Gained hands-on experience with splicing techniques used for connecting optical fiber cables efficiently.\n2. Learned the process of assembling fiber optic cables, ensuring proper alignment and signal transmission.\n3. Understood the internal hardware and components of networking routers through practical exposure.\n4. Explored various fiber optic and networking products developed and manufactured by the company.\n5. Observed and participated in quality control and testing procedures to ensure optimal performance of networking equipment.",
-      "media": {
-        "images": [
-          "media\\0ead7af775f440c488d15dbb2c125ad4_Aarohi Saisha Certificate_page-0001.jpg"
-        ]
-      }
+      "role": "ROS2 Developer",
+      "company": "PLR Robotics",
+      "period": "Nov 2025 - Present",
+      "description": "Designing and developing robust ROS2 architectures for autonomous systems. Focusing on navigation stacks, sensor fusion (LiDAR/Vision), and real-time robot control."
     },
     {
-      "title": "DRDO \u2013 Robotics Simulation Intern (10 Jan 2024 \u2013 10 Jun 2024, 6 months) ",
-      "description": "1. Simulated UR5 and UR10 robotic arms within the PyBullet physics engine for industrial task environments.\n2. Integrated custom forward and inverse kinematics models to ensure precise joint control and end-effector positioning.\n3. Developed reinforcement learning (RL)-based agents to enable autonomous manipulation tasks using Gym and Ravens frameworks.\n4. Designed and validated behavior policies for object picking, placing, and tool-use scenarios in a virtual factory setup.\n5. Conducted performance testing and iterative refinement of models to ensure stability, accuracy, and adaptability across tasks.",
-      "media": {
-        "images": [
-          "media\\74a404021f6d4955ad33d98c4b5b8aa7_drdo_certificate.png"
-        ]
-      }
+      "role": "Reinforcement Learning Engineer",
+      "company": "DRDO",
+      "period": "April 2025 - Oct 2025",
+      "description": "Developed realistic quadruped simulations (ROS2, Webots, Isaac Sim). Implemented sensor integration, swarm algorithms, and aerial-ground coordination scenarios."
     },
     {
-      "title": "DRDO \u2013 Reinforcement Learning Engineer (1 April 2025 - 20 October 2025, 6 months) ",
-      "description": "1. Developed realistic quadruped robotic simulations using ROS2, Webots, and Isaac Sim to model locomotion and environment interaction.\n2. Implemented sensor integration and control architectures to simulate real-world robotic perception and actuation.\n3. Explored and evaluated swarm robotics algorithms for cooperative behavior among multiple quadrupeds and drones.\n4. Simulated aerial-ground coordination scenarios to study task distribution, communication, and path planning.\n5. Conducted comparative analysis of simulation frameworks to identify trade-offs in scalability, fidelity, and computational performance."
+      "role": "Robotics Simulation Intern",
+      "company": "DRDO",
+      "period": "Jan 2024 - June 2024",
+      "description": "Simulated UR5/UR10 arms in PyBullet. Integrated kinematics models and RL agents for autonomous manipulation tasks."
+    },
+    {
+      "role": "Intern",
+      "company": "Saisha Infotech",
+      "period": "July 2021",
+      "description": "Hands-on experience with optical fiber splicing, cable assembly, and networking hardware."
     }
   ],
-  "projects": [
+  "articles": [
     {
-      "title": "Custom UAV Hexacopter from Scratch (2 Years)",
-      "description": "1. Assembled a fully operational UAV from scratch using the Pixhawk 2.4.8 flight controller, ensuring proper integration of IMU, GPS, ESCs, and power distribution board.\n2. Executed detailed PID tuning and ESC throttle calibration to optimize flight stability and responsiveness.\n3. Integrated real-time sensor data streams, including GPS and IMU, for autonomous navigation and environmental awareness.\n4. Independently managed the complete electrical system, including wiring, power management, and safety mechanisms.\n5. Ensured structural integrity through precise frame balancing, motor alignment, and aerodynamic optimization for consistent performance.",
-      "media": {
-        "images": [
-          "media\\ed3a01b776924de0bce21b691a30639c_dddd.png"
-        ],
-        "videos": [
-          "media\\3a18042adced4bb9bd72bdb6dea183fd_dddd.mp4"
-        ]
-      }
+      "title": "If Quadrupeds Are Overkill, What Actually Works? Why Drones + Machine Learning Win Surveillance",
+      "link": "https://medium.com/@MLwithAarohi/if-quadrupeds-are-overkill-what-actually-works-why-drones-machine-learning-win-surveillance-f18536215049",
+      "description": "Analyzing the efficiency of drones vs quadrupeds in surveillance tasks."
     },
     {
-      "title": "Hexacopter Simulation with YOLOv8 Human Detection (4 months) ",
-      "description": "1. Developed a UAV (Hexacopter) simulation environment in PyBullet, enabling physics-based flight dynamics and control.\n2. Integrated real-time object detection using YOLOv8 to process aerial imagery from the simulated UAV camera.\n3. Designed mission logic for autonomous search-and-detect behavior in complex environments, mimicking disaster relief scenarios.\n4. Implemented dynamic obstacle and human target placement to evaluate UAV performance under varying conditions.\n5. Validated the system\u2019s detection accuracy and navigation efficiency in simulated rescue missions using custom test cases.",
-      "media": {
-        "images": [
-          "media\\e77000af89834c9d99ad6771fd2aa75f_SIM1.jpg"
-        ],
-        "videos": [
-          "media\\4a8943686c5c4b9a95a3aed961ae1453_SIM2.mp4"
-        ]
-      },
-      "links": [
-        "https://github.com/aarohiin/Hexacopter-virtual-simulation-for-people-detection"
-      ]
+      "title": "Quadruped Robots Are Impressive—But Do They Actually Solve Any Real-World Problems?",
+      "link": "https://medium.com/@MLwithAarohi/quadruped-robots-are-impressive-but-do-they-actually-solve-any-real-world-problems-33da6b46d0d5",
+      "description": "A critical look at the practical applications of quadruped robots."
     },
-    {
-      "title": "Stocks Price Predictor",
-      "description": "1. Technical Features:\n\ni. The repository offers a comprehensive web application built with Streamlit for analyzing Indian stocks (NSE).\nii. Key features include real-time stock price tracking, historical data analysis, technical and fundamental analysis, and machine learning-based stock price prediction using Random Forest Regression.\n\n2. Machine Learning Integration:\n\ni. Implements a Random Forest Regression model with high accuracy (96.46% training and 93.22% testing).\nii. The model achieves low RMSE (Root Mean Squared Error): \u20b982.74 (train) and \u20b9127.91 (test), making it reliable for predictions.\n\n3. Analysis Tools:\n\ni. Includes various analysis options: SMA (Simple Moving Average), RSI (Relative Strength Index), and MACD (Moving Average Convergence Divergence) indicators.\nii. Provides sentiment analysis using NLTK's VADER sentiment analyzer for interpreting news data.\n\n4. Data Sources and Dependencies:\n\ni. Data is fetched from Yahoo Finance (yfinance) and Google News (gnews).\nii. Built with Python and relies on libraries such as scikit-learn, numpy, pandas, ta, and plotly.\n\n5. Setup and Usage:\n\ni. The application can be set up by installing dependencies listed in requirements.txt and running the main Streamlit app (Stock_dashboard.py).\nii. The interactive dashboard provides visualization and analysis tools accessible locally via http://localhost:8501.",
-      "media": {
-        "images": [
-          "media\\4c25d407f76442e0a0bf34c6300dd384_stock.jpeg"
-        ]
-      },
-      "links": [
-        "https://github.com/aarohiin/Stock-Prediction-and-Analysis"
-      ]
-    },
-    {
-      "title": "ATS from Scratch",
-      "description": "A custom Applicant Tracking System (ATS) built from scratch using Python. This application analyzes resumes against job descriptions using Natural Language Processing (NLP) to provide matching scores and detailed analysis. The project includes both Flask and Streamlit implementations.",
-      "media": {
-        "images": [
-          "media\\24a1c861770c418ab0ce5a632bcf6529_ATSS.jpeg"
-        ]
-      },
-      "links": [
-        "https://github.com/aarohiin/ATS-from-Scratch"
-      ]
-    },
-    {
-      "title": "AI Blog Assistant using nvidia llama-3.1-nemotron-70b-instruct",
-      "description": "A simple, powerful Streamlit app that generates full-length blog posts using NVIDIA's LLaMA-3 based Nemotron-70B Instruct LLM \u2014 without hardcoding your API key. Perfect for developers, marketers, and content creators who want fast, structured, and customizable blog content.",
-      "media": {
-        "images": [
-          "media\\a8b66b9377cd4423a624e7761ee85710_blog.jpeg"
-        ]
-      },
-      "links": [
-        "https://github.com/aarohiin/AI-Blog-Assistant"
-      ]
-    },
-    {
-      "title": "Portfolio Website: aarohiin.github.io",
-      "description": "This project is a personal portfolio management system that blends front-end design and DBMS principles. It allows you to:\n\nDisplay your portfolio dynamically on a static webpage (pp.html)\n\nStore data in a structured JSON format (data.json)\n\nUse a Streamlit dashboard (data.py) to manage entries like projects, skills, certifications, etc.\n\nTech Stack:\nFrontend: HTML5, CSS3, JavaScript, Three.js, GSAP, Particles.js\n\nBackend/DBMS Interface: Python (Streamlit)\n\nDatabase Equivalent: JSON file (acts like NoSQL DB)\n\nMedia Management: Local media/ folder\n\nData Model: Structured keys for each section (skills, projects, education, etc.)",
-      "media": {
-        "images": [
-          "media\\368fe1f291ef43159bcc38cca7e727af_Screenshot 2025-06-14 171547.png"
-        ]
-      },
-      "links": [
-        "https://github.com/aarohiin/aarohiin.github.io"
-      ]
-    }
-  ],
-  "medium": [
     {
       "title": "AI-Powered Hexacopter Simulation for Smart People Detection",
-      "description": "What if you could train and test AI-powered drones in a risk-free, virtual environment?\n\nI\u2019ve built a Hexacopter Simulation for Smart People Detection\u2014an open-source Python-based project that enables researchers and developers to:\n1. Simulate drone flight dynamics in a virtual 3D environment\n2. Integrate AI-driven people detection algorithms (YOLO, OpenCV, etc.)\n 3. Test and refine models\u2014without hardware costs or safety concerns\n\n\nThis project accelerates AI model development, making drone-based AI research more accessible, scalable, and efficient.",
-      "media": {
-        "images": [
-          "media\\f583015945f149a9bedb20f7fb49f5d4_AI-Powered Hexacopter Simulation for Smart People Detection.jpeg"
-        ]
-      },
-      "links": [
-        "https://medium.com/@aarohi.pune/ai-powered-hexacopter-simulation-for-smart-people-detection-792283ee045a"
-      ]
+      "link": "https://medium.com/@aarohi.pune/ai-powered-hexacopter-simulation-for-smart-people-detection-792283ee045a",
+      "description": "Simulating drone flight dynamics and integrating AI-driven people detection."
     },
     {
       "title": "AI in Robotics: Leveraging Gym for Simulation and Development",
-      "description": "Testing and refining AI-driven robotic models can be costly and risky in real-world environments. In my latest article, I explore how OpenAI Gym provides a powerful simulation platform for safe, cost-effective, and efficient robotics development.\n\nFrom reinforcement learning to Sim2Real transfer, discover how simulations accelerate innovation in robotics.",
-      "media": {
-        "images": [
-          "media\\7ecb8f6d954d48689832f7707f68b147_AI in Robotics Leveraging Gym for Simulation and Development.jpeg"
-        ]
-      },
-      "links": [
-        "https://medium.com/@aarohi.pune/ai-in-robotics-leveraging-gym-for-simulation-and-development-b15a348d870c"
-      ]
+      "link": "https://medium.com/@aarohi.pune/ai-in-robotics-leveraging-gym-for-simulation-and-development-b15a348d870c",
+      "description": "Using OpenAI Gym for safe and cost-effective robotics development."
     },
     {
       "title": "Prompt Robotic Simulation: Creating Entire Robot Environments with a Single Command",
-      "description": "What if building a robotic simulation was as easy as describing it in plain English?\n\nIn my blog, I dive into Prompt Robotic Simulation \u2014 a groundbreaking approach where large language models generate full simulation environments from a single natural language prompt. This shift is redefining how we prototype, experiment, and teach in the world of robotics.\n\nFrom PyBullet to reinforcement learning, discover how we're bridging the gap between idea and implementation in seconds.",
-      "media": {
-        "images": [
-          "media\\3ba3210d9461406f9261e00b70b381f1_prompt.png"
-        ]
-      },
-      "links": [
-        "https://medium.com/@aarohi.pune/prompt-robotic-simulation-creating-entire-robot-environments-with-a-single-command-3479218fda6c"
-      ]
+      "link": "https://medium.com/@aarohi.pune/prompt-robotic-simulation-creating-entire-robot-environments-with-a-single-command-3479218fda6c",
+      "description": "Generative AI for creating robotic simulation environments."
     }
-  ]
+  ],
+  "contact": {
+    "email": "aarohi.pune@gmail.com",
+    "phone": "9373087401",
+    "github": "https://github.com/aarohiin",
+    "linkedin": "https://www.linkedin.com/in/aarohi-singh-421b08318/"
+  }
 }
-
-

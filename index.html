@@ -1,283 +1,1326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aarohi Singh's Portfolio</title>
-  <!-- Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
 
-  <!-- Styles (unchanged) -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aarohi M. Singh | An Engineer Who Explores Everyday</title>
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
   <style>
-    /* styles remain unchanged */
     :root {
-      --primary: #00ffaa;
-      --secondary: #0088ff;
-      --dark: #0a0f18;
-      --darker: #050a14;
-      --light: #e0e0e0;
-      --accent: #ff3e88;
+      /* STANDARD MODE (Default) */
+      --bg-color: #0A1128;
+      --neural-blue: #4A90E2;
+      --vision-green: #00D9A3;
+      --train-orange: #FF9500;
+      --deploy-purple: #9B59B6;
+      --text-color: #E8F1F2;
+      --text-secondary: #ccc;
+      --panel-bg: rgba(10, 17, 40, 0.85);
+      --border-color: rgba(74, 144, 226, 0.3);
+      --font-main: 'Courier New', monospace;
     }
-    body {
+
+    [data-theme="dark"] {
+      /* DARK MODE: Black bg, Radium Green font */
+      --bg-color: #000000;
+      --neural-blue: #39FF14;
+      /* Radium Green acts as primary accent */
+      --vision-green: #39FF14;
+      --train-orange: #39FF14;
+      /* Monochromatic feel */
+      --deploy-purple: #39FF14;
+      --text-color: #39FF14;
+      --text-secondary: #2ebb11;
+      /* Slightly darker green */
+      --panel-bg: rgba(0, 0, 0, 0.9);
+      --border-color: rgba(57, 255, 20, 0.5);
+    }
+
+    [data-theme="light"] {
+      /* LIGHT MODE: White bg, Grey/Black font */
+      --bg-color: #F5F7FA;
+      --neural-blue: #2C3E50;
+      /* Dark Blue/Grey */
+      --vision-green: #27AE60;
+      --train-orange: #D35400;
+      --deploy-purple: #8E44AD;
+      --text-color: #1a1a1a;
+      --text-secondary: #555555;
+      --panel-bg: rgba(255, 255, 255, 0.95);
+      --border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Courier New', monospace;
-      background-color: var(--darker);
-      color: var(--light);
-      overflow-x: hidden;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--neural-blue) var(--bg-color);
     }
-    #particles-js, #background-canvas {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-main);
+      overflow: hidden;
+      /* Prevent scrolling, use tabs */
+      height: 100vh;
     }
-    nav {
-      background: rgba(5, 10, 20, 0.8);
-      padding: 1rem;
+
+    /* Background Canvas */
+    #neural-canvas {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      z-index: 10;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Layout Grid */
+    .container {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      background: var(--bg-color);
+    }
+
+    /* Header / Navigation */
+    header {
+      padding: 1.5rem 2rem;
       display: flex;
-      justify-content: center;
-      box-shadow: 0 2px 20px rgba(0, 255, 170, 0.1);
-    }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .nav-link {
-      color: var(--light);
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .nav-link:hover {
-      color: var(--primary);
-      transform: scale(1.1);
-    }
-    main {
-      padding: 6rem 2rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    section {
-      margin-bottom: 4rem;
-    }
-    h1, h2, h3 {
-      color: var(--primary);
-    }
-    h1 {
-      font-size: 2.8rem;
-    }
-    h2 {
-      font-size: 2rem;
-      border-bottom: 2px solid var(--secondary);
-      display: inline-block;
-    }
-    .typing {
-      border-right: 2px solid var(--primary);
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-    }
-    @keyframes typing { from { width: 0 } to { width: 100% } }
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: var(--primary) }
-    }
-    .card {
-      background: rgba(10, 15, 24, 0.8);
-      border: 1px solid rgba(0, 136, 255, 0.1);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 4px 20px rgba(0, 255, 170, 0.2);
-    }
-    .card-content-wrapper {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--panel-bg);
+      backdrop-filter: blur(5px);
+      z-index: 100;
     }
-    .card-content-text {
-      flex: 1;
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--neural-blue);
+      text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+      letter-spacing: 2px;
     }
-    .card-content-images {
-      flex: 1;
+
+    nav {
       display: flex;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 2px;
+      background: var(--border-color);
+      padding: 1px;
+      border-radius: 4px;
     }
-    .card-content-images img {
-      max-width: 100%;
-      max-height: 200px;
-      border-radius: 8px;
+
+    .tab-btn {
+      background: var(--bg-color);
+      border: none;
+      color: var(--text-color);
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
     }
-    footer {
-      background: rgba(5, 10, 20, 0.8);
+
+    .tab-btn:hover {
+      background: var(--border-color);
+      color: var(--neural-blue);
+    }
+
+    .tab-btn.active {
+      background: var(--neural-blue);
+      color: var(--bg-color);
+      font-weight: bold;
+      box-shadow: 0 0 15px var(--border-color);
+    }
+
+    /* Main Content Area */
+    main {
+      position: relative;
+      overflow: hidden;
       padding: 2rem;
+    }
+
+    .tab-content {
+      display: none;
+      height: 100%;
+      overflow-y: auto;
+      /* Scroll inside the tab */
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO Styles */
+    .hero-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
       text-align: center;
-      color: var(--light);
     }
-    a {
-      color: var(--accent);
+
+    .typing-container {
+      margin-bottom: 3rem;
+    }
+
+    .typing-text {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      min-height: 4rem;
+      text-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+      border-right: 2px solid var(--neural-blue);
+      animation: blink-caret 0.75s step-end infinite;
+      display: inline-block;
+      padding-right: 10px;
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: var(--neural-blue)
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--vision-green);
+      margin-bottom: 2rem;
+    }
+
+    .system-status {
+      background: var(--panel-bg);
+      border: 1px solid var(--train-orange);
+      padding: 2rem;
+      border-radius: 4px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 0 30px rgba(255, 149, 0, 0.1);
+    }
+
+    .status-header {
+      color: var(--train-orange);
+      border-bottom: 1px solid var(--train-orange);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      text-align: left;
+    }
+
+    .stat-item {
+      border-left: 2px solid var(--neural-blue);
+      padding-left: 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--neural-blue);
+      text-transform: uppercase;
+    }
+
+    /* Content Styles (Projects, Expertise, etc.) */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neural-blue), var(--vision-green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-color: var(--vision-green);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+
+    .card-category {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--deploy-purple);
+      color: var(--deploy-purple);
+      border-radius: 10px;
+    }
+
+    .card-metrics {
+      background: var(--bg-color);
+      padding: 0 0.8rem;
+      margin: 0;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .card:hover .card-metrics {
+      max-height: 200px;
+      /* Arbitrary enough height */
+      opacity: 1;
+      padding: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .card-metrics ul {
+      list-style: none;
+    }
+
+    .card-metrics li::before {
+      content: '> ';
+      color: var(--vision-green);
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--neural-blue);
+      color: var(--neural-blue);
       text-decoration: none;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
     }
-    a:hover {
-      color: var(--primary);
+
+    .btn:hover {
+      background: var(--neural-blue);
+      color: var(--bg-color);
+    }
+
+    /* Section Headers */
+    .section-header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--vision-green);
+    }
+
+    /* Skills/Expertise */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .skill-group h3 {
+      color: var(--neural-blue);
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--neural-blue);
+      padding-left: 1rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .skill-list li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .skill-list li::before {
+      content: '⚡ ';
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background: var(--bg-color);
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        border: none;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-layout {
+        padding-top: 2rem;
+      }
+
+      .typing-text {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* GALLERY STYLES */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      height: 200px;
+      /* Fixed height for consistency */
+      background: #000;
+      animation: fadeIn 0.5s ease backwards;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      border-color: var(--vision-green);
+      z-index: 2;
+      box-shadow: 0 0 15px rgba(0, 217, 163, 0.3);
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.5rem;
+      background: rgba(0, 0, 0, 0.8);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-title {
+      color: #fff;
+      /* Always white due to dark overlay */
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 80vh;
+      border: 2px solid var(--neural-blue);
+      box-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0)
+      }
+
+      to {
+        transform: scale(1)
+      }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+      color: var(--train-orange);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .theme-btn {
+      transition: transform 0.2s ease, outline 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .theme-btn.active-theme {
+      outline: 2px solid var(--text-color);
+      outline-offset: 2px;
+    }
+
+    .modal-caption {
+      margin-top: 1rem;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div id="particles-js"></div>
-  <canvas id="background-canvas"></canvas>
+  <div id="neural-canvas"></div>
 
-  <nav>
-    <div class="nav-links">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#experience" class="nav-link">Experience</a>
-      <a href="#achievements" class="nav-link">Achievements</a>
-      <a href="#certification" class="nav-link">Certification</a>
-      <a href="#education" class="nav-link">Education</a>
-      <a href="#medium" class="nav-link">Medium Articles</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </div>
-  </nav>
-
-  <main>
-    <section id="home" style="text-align:center">
-      <h1 class="typing">Aarohi M. Singh</h1>
-      <p class="typing" style="animation-delay: 1s;">Reinforcement Learning Engineer</p>
-    </section>
-
-    <section id="skills"><h2>Skills</h2></section>
-    <section id="projects"><h2>Projects</h2></section>
-    <section id="experience"><h2>Experience</h2></section>
-    <section id="achievements"><h2>Achievements</h2></section>
-    <section id="certification"><h2>Certification</h2></section>
-    <section id="education"><h2>Education</h2></section>
-    <section id="medium"><h2>Medium Articles</h2></section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p>
-          AAROHI M. SINGH<br>
-          UAV Engineer | Pune<br>
-          <a href="mailto:aarohi.pune@gmail.com">aarohi.pune@gmail.com</a> | 9373087401<br>
-          <a href="https://github.com/aarohiin" target="_blank">GitHub</a> |
-          <a href="https://www.linkedin.com/in/aarohi-singh-421b08318/" target="_blank">LinkedIn</a>
-        </p>
+  <div class="container">
+    <header>
+      <div class="brand">&lt;AAROHI.AI /&gt;</div>
+      <div class="theme-switch" style="display: flex; gap: 5px; margin-right: auto; margin-left: 20px;">
+        <button class="theme-btn active-theme" onclick="setTheme('standard')" title="Standard Mode"
+          style="background:#0A1128; border:1px solid #4A90E2; width:15px; height:15px; border-radius:50%; cursor:pointer;"></button>
+        <button class="theme-btn" onclick="setTheme('dark')" title="Dark Mode"
+          style="background:#000; border:1px solid #39FF14; width:15px; height:15px; border-radius:50%; cursor:pointer;"></button>
+        <button class="theme-btn" onclick="setTheme('light')" title="Light Mode"
+          style="background:#FFF; border:1px solid #333; width:15px; height:15px; border-radius:50%; cursor:pointer;"></button>
       </div>
-    </section>
-  </main>
+      <nav>
+        <button class="tab-btn active" onclick="openTab('home')">Home</button>
+        <button class="tab-btn" onclick="openTab('expertise')">Expertise</button>
+        <button class="tab-btn" onclick="openTab('projects')">Projects</button>
+        <button class="tab-btn" onclick="openTab('experience')">Experience</button>
+        <button class="tab-btn" onclick="openTab('gallery')">Gallery</button>
+        <button class="tab-btn" onclick="openTab('articles')">Articles</button>
+        <button class="tab-btn" onclick="openTab('contact')">Connect</button>
+      </nav>
+    </header>
 
-  <footer>
-    &copy; 2025 Aarohi M. Singh. All rights reserved.
-  </footer>
+    <main>
+      <!-- HOME TAB -->
+      <div id="home" class="tab-content active">
+        <div class="hero-layout">
+          <div class="typing-container">
+            <div class="typing-text" id="typewriter"></div>
+            <div class="hero-subtitle" id="hero-subtitle">Initializing System...</div>
+          </div>
+
+          <div class="system-status">
+            <div class="status-header">SYSTEM STATUS: OPERATIONAL</div>
+            <div class="stats-grid" id="stats-grid">
+              <!-- Stats inserted via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERTISE TAB -->
+      <div id="expertise" class="tab-content">
+        <div class="section-header">
+          <h2 class="section-title">Expertise</h2>
+        </div>
+        <div class="skills-grid" id="skills-container">
+          <!-- Skills inserted via JS -->
+        </div>
+      </div>
+
+      <!-- PROJECTS TAB -->
+      <div id="projects" class="tab-content">
+        <div class="section-header">
+          <h2 class="section-title">Projects</h2>
+        </div>
+        <div class="grid-layout" id="projects-container">
+          <!-- Projects inserted via JS -->
+        </div>
+      </div>
+
+      <!-- EXPERIENCE TAB -->
+      <div id="experience" class="tab-content">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+        </div>
+        <div class="grid-layout" id="experience-container">
+          <!-- Experience inserted via JS -->
+        </div>
+      </div>
+
+      <!-- GALLERY TAB -->
+      <div id="gallery" class="tab-content">
+        <div class="section-header">
+          <h2 class="section-title">Gallery</h2>
+        </div>
+        <div class="grid-layout" id="gallery-container"
+          style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+          <!-- Gallery inserted via JS -->
+        </div>
+      </div>
+
+      <!-- ARTICLES TAB -->
+      <div id="articles" class="tab-content">
+        <div class="section-header">
+          <h2 class="section-title">Articles</h2>
+        </div>
+        <div class="grid-layout" id="articles-container">
+          <!-- Articles inserted via JS -->
+        </div>
+      </div>
+
+      <!-- CONTACT TAB -->
+      <div id="contact" class="tab-content">
+        <div class="section-header">
+          <h2 class="section-title">Connect</h2>
+        </div>
+        <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+          <div class="card-desc" id="contact-info">
+            <!-- Contact info inserted via JS -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal for Gallery -->
+    <div id="modal" class="modal">
+      <span class="close-modal">&times;</span>
+      <img class="modal-content" id="modal-img">
+      <div id="modal-caption" class="modal-caption"></div>
+    </div>
+
+    <footer>
+      &copy; 2025 Aarohi M. Singh. All Systems Nominal.
+    </footer>
+  </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const canvas = document.getElementById('background-canvas');
+    // --- THEME LOGIC ---
+    function setTheme(theme) {
+      const root = document.documentElement;
+      if (theme === 'standard') {
+        root.removeAttribute('data-theme');
+      } else {
+        root.setAttribute('data-theme', theme);
+      }
+
+      // Re-init visuals to pick up new colors if needed
+      // Currently the particles are hardcoded in initVisuals, 
+      // let's update initVisuals to read from CSS var.
+      document.getElementById('neural-canvas').innerHTML = '';
+      initVisuals();
+
+      // Update button states
+      const btns = document.querySelectorAll('.theme-btn');
+      btns.forEach(btn => btn.classList.remove('active-theme'));
+      // Find the button that matches the theme
+      // Since we don't have IDs, we can match by onclick attribute or add data-theme attr to buttons.
+      // Easiest is to assume order: 0=standard, 1=dark, 2=light
+      if (theme === 'standard') btns[0].classList.add('active-theme');
+      if (theme === 'dark') btns[1].classList.add('active-theme');
+      if (theme === 'light') btns[2].classList.add('active-theme');
+    }
+
+    // --- 1. THEME & VISUALS (THREE.JS) ---
+    const initVisuals = () => {
+      const canvasContainer = document.getElementById('neural-canvas');
+      canvasContainer.innerHTML = ''; // Clear previous canvas
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
       renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      canvasContainer.appendChild(renderer.domElement);
 
-      const group = new THREE.Group();
-      const nodes = [];
+      // Get colors from CSS variables
+      const style = getComputedStyle(document.body);
+      const neuralBlue = style.getPropertyValue('--neural-blue').trim();
+      // We need to convert hex/name to Three.js color. 
+      // THREE.Color() handles hex string nicely.
 
-      for (let i = 0; i < 50; i++) {
-        const sphere = new THREE.Mesh(
-          new THREE.SphereGeometry(0.15, 8, 8),
-          new THREE.MeshBasicMaterial({ color: 0x0055aa })
-        );
-        sphere.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20);
-        nodes.push(sphere);
-        group.add(sphere);
+      // Neural Network Nodes
+      const particleCount = 100;
+      const particles = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      const velocities = [];
+
+      for (let i = 0; i < particleCount * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 30; // Spread
+        if (i % 3 === 0) velocities.push({
+          x: (Math.random() - 0.5) * 0.02,
+          y: (Math.random() - 0.5) * 0.02,
+          z: (Math.random() - 0.5) * 0.02
+        });
       }
 
-      for (let i = 0; i < 100; i++) {
-        const mat = new THREE.LineBasicMaterial({ color: 0x004488 });
-        const pointA = nodes[Math.floor(Math.random() * nodes.length)].position;
-        const pointB = nodes[Math.floor(Math.random() * nodes.length)].position;
-        const geo = new THREE.BufferGeometry().setFromPoints([pointA, pointB]);
-        const line = new THREE.Line(geo, mat);
-        group.add(line);
-      }
+      particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const pMaterial = new THREE.PointsMaterial({
+        color: new THREE.Color(neuralBlue),
+        size: 0.15,
+        transparent: true,
+        opacity: 0.8
+      });
+      const particleSystem = new THREE.Points(particles, pMaterial);
+      scene.add(particleSystem);
 
-      scene.add(group);
-      camera.position.z = 30;
+      // Connections
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: new THREE.Color(neuralBlue),
+        transparent: true,
+        opacity: 0.15
+      });
 
-      function animate() {
-        requestAnimationFrame(animate);
-        group.rotation.x += 0.001;
-        group.rotation.y += 0.002;
+      const linesGeometry = new THREE.BufferGeometry();
+      const lines = new THREE.LineSegments(linesGeometry, lineMaterial);
+      scene.add(lines);
+
+      camera.position.z = 15;
+
+      // Stop previous animation loop if exists
+      if (window.animationId) cancelAnimationFrame(window.animationId);
+
+      // Animation Loop
+      const animate = () => {
+        window.animationId = requestAnimationFrame(animate);
+
+        const positions = particleSystem.geometry.attributes.position.array;
+
+        // Move particles
+        for (let i = 0; i < particleCount; i++) {
+          positions[i * 3] += velocities[i].x;
+          positions[i * 3 + 1] += velocities[i].y;
+          positions[i * 3 + 2] += velocities[i].z;
+
+          // Boundary check to keep them close
+          if (Math.abs(positions[i * 3]) > 15) velocities[i].x *= -1;
+          if (Math.abs(positions[i * 3 + 1]) > 10) velocities[i].y *= -1;
+          if (Math.abs(positions[i * 3 + 2]) > 10) velocities[i].z *= -1;
+        }
+        particleSystem.geometry.attributes.position.needsUpdate = true;
+
+        // Draw connections
+        const linePositions = [];
+        const connectDistance = 4;
+
+        for (let i = 0; i < particleCount; i++) {
+          for (let j = i + 1; j < particleCount; j++) {
+            const dx = positions[i * 3] - positions[j * 3];
+            const dy = positions[i * 3 + 1] - positions[j * 3 + 1];
+            const dz = positions[i * 3 + 2] - positions[j * 3 + 2];
+            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+            if (dist < connectDistance) {
+              linePositions.push(
+                positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2],
+                positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]
+              );
+            }
+          }
+        }
+        lines.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+
+        // Slight rotation
+        scene.rotation.y += 0.001;
+        scene.rotation.x += 0.0005;
+
         renderer.render(scene, camera);
-      }
+      };
+
       animate();
 
+      // Resize handle
       window.addEventListener('resize', () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
+    };
 
-      particlesJS.load('particles-js', 'particles.json', () => {
-        console.log('Particles.js loaded');
-      });
+    // --- 2. DATA LOADING & RENDERING ---
+    const systemData = {
+      "hero": {
+        "name": "Aarohi M. Singh",
+        "title": "An engineer who explores everyday",
+        "subtitles": [
+          "An engineer who explores everyday"
+        ],
+        "stats": [
+          { "label": "Training Pipelines", "value": "12+" },
+          { "label": "LLMs Fine-tuned", "value": "5+" },
+          { "label": "CV Models", "value": "8+" },
+          { "label": "Models Quantized", "value": "15+" },
+          { "label": "Robotics Systems", "value": "4+" },
+          { "label": "MLOps Pipelines", "value": "6+" }
+        ]
+      },
+      "about": {
+        "philosophies": [
+          {
+            "title": "Design Philosophy",
+            "description": "Intelligence Engineering - From Research to Production. The complete ML lifecycle: Research → Training → Optimization → Deployment → Monitoring."
+          }
+        ],
+        "bio": "AI/ML and Robotics engineer building autonomous systems through reinforcement learning, perception pipelines, and physics-based simulation. Core capabilities include Reinforcement Learning for control and navigation, Robotic simulation architecture, LiDAR & vision-based perception integration, and End-to-end ML pipelines."
+      },
+      "skills": {
+        "LLM Engineering": [
+          "Fine-Tuning (Full, LoRA, Prefix Tuning)",
+          "Model Quantization (PTQ, QAT, Dynamic)",
+          "Knowledge Distillation (BERT → DistilBERT)",
+          "Prompt Engineering (CoT, ToT, RAG)",
+          "RAG Systems (Vector DBs, Embeddings)",
+          "Training Infrastructure (DDP, DeepSpeed)"
+        ],
+        "Computer Vision": [
+          "Object Detection (YOLOv5/v8, Faster R-CNN)",
+          "Tracking (DeepSORT, Kalman Filters)",
+          "Segmentation (U-Net, DeepLabv3+, Mask R-CNN)",
+          "Pose Estimation (OpenPose, MediaPipe)",
+          "Generative Models (GANs, Stable Diffusion)"
+        ],
+        "Robotics & Simulation": [
+          "PyBullet & Isaac Sim",
+          "ROS2 & Gazebo",
+          "Reinforcement Learning (PPO, DQN)",
+          "Sim-to-Real Transfer",
+          "Swarm Robotics"
+        ],
+        "MLOps & Tools": [
+          "Docker & Kubernetes",
+          "CI/CD Pipelines",
+          "MLflow",
+          "ONNX Runtime",
+          "TensorRT",
+          "Python, C++, CUDA"
+        ]
+      },
+      "projects": {
+        "featured": [
+          {
+            "title": "GPT-2 Fine-tuning Project",
+            "category": "LLM",
+            "metrics": [
+              "Original: 1.5B params | 6GB VRAM",
+              "Quantized: INT8 | 1.5GB VRAM",
+              "LoRA Fine-tuned: +12% task accuracy"
+            ],
+            "description": "Optimization of GPT-2 for specific domain tasks using LoRA and quantization techniques.",
+            "links": []
+          },
+          {
+            "title": "Real-Time Object Detection",
+            "category": "Computer Vision",
+            "metrics": [
+              "Architecture: Custom YOLOv8",
+              "Inference: 45 FPS (edge device)",
+              "Accuracy: 94.3% mAP"
+            ],
+            "description": "High-performance object detection system optimized for edge deployment.",
+            "links": []
+          },
+          {
+            "title": "End-to-End ML Pipeline",
+            "category": "MLOps",
+            "metrics": [
+              "Docker + Kubernetes deployment",
+              "Automated retraining (MLflow)",
+              "A/B testing framework"
+            ],
+            "description": "Scalable MLOps pipeline for automated model lifecycle management.",
+            "links": []
+          }
+        ],
+        "all": [
+          {
+            "title": "Hexacopter Simulation with YOLOv8",
+            "category": "Robotics/CV",
+            "description": "Developed a UAV simulation in PyBullet with real-time YOLOv8 people detection. Implemented autonomous search-and-detect logic and validated in simulated disaster scenarios.",
+            "links": ["https://github.com/aarohiin/Hexacopter-virtual-simulation-for-people-detection"]
+          },
+          {
+            "title": "Stocks Price Predictor",
+            "category": "ML/Analytic",
+            "description": "Web app for NSE stock analysis and prediction using Random Forest Regression. Features technical indicators (RSI, MACD) and news sentiment analysis.",
+            "links": ["https://github.com/aarohiin/Stock-Prediction-and-Analysis"]
+          },
+          {
+            "title": "ATS from Scratch",
+            "category": "NLP",
+            "description": "Custom Applicant Tracking System using NLP to analyze resumes against job descriptions, providing matching scores and detailed feedback.",
+            "links": ["https://github.com/aarohiin/ATS-from-Scratch"]
+          },
+          {
+            "title": "AI Blog Assistant",
+            "category": "LLM",
+            "description": "Streamlit app generating blog posts using NVIDIA's LLaMA-3.1-Nemotron-70B-Instruct, designed for content creators.",
+            "links": ["https://github.com/aarohiin/AI-Blog-Assistant"]
+          },
+          {
+            "title": "Gemini Clone",
+            "category": "LLM/Web",
+            "description": "A clone of the Gemini interface/system, demonstrating integration with large language models.",
+            "links": ["https://github.com/aarohiin/Gemini-Clone"]
+          },
+          {
+            "title": "Resume Screening",
+            "category": "NLP",
+            "description": "Basic NLP resume screening project for automated candidate evaluation.",
+            "links": ["https://github.com/aarohiin/Resume-Screening"]
+          },
+          {
+            "title": "Audio Processing",
+            "category": "DSP/Python",
+            "description": "Audio processing utilities including autotune, BPM change, reverb, and bass boost using pydub and numpy.",
+            "links": ["https://github.com/aarohiin/Audio-processing"]
+          },
+          {
+            "title": "Portfolio Website",
+            "category": "Web/System",
+            "description": "Personal portfolio management system blending front-end design with a JSON-based data model and Streamlit dashboard.",
+            "links": ["https://github.com/aarohiin/aarohiin.github.io"]
+          }
+        ]
+      },
+      "experience": [
+        {
+          "role": "ROS2 Developer",
+          "company": "PLR Robotics",
+          "period": "Nov 2025 - Present",
+          "description": "Designing and developing robust ROS2 architectures for autonomous systems. Focusing on navigation stacks, sensor fusion (LiDAR/Vision), and real-time robot control."
+        },
+        {
+          "role": "Reinforcement Learning Engineer",
+          "company": "DRDO",
+          "period": "April 2025 - Oct 2025",
+          "description": "Developed realistic quadruped simulations (ROS2, Webots, Isaac Sim). Implemented sensor integration, swarm algorithms, and aerial-ground coordination scenarios."
+        },
+        {
+          "role": "Robotics Simulation Intern",
+          "company": "DRDO",
+          "period": "Jan 2024 - June 2024",
+          "description": "Simulated UR5/UR10 arms in PyBullet. Integrated kinematics models and RL agents for autonomous manipulation tasks."
+        },
+        {
+          "role": "Intern",
+          "company": "Saisha Infotech",
+          "period": "July 2021",
+          "description": "Hands-on experience with optical fiber splicing, cable assembly, and networking hardware."
+        }
+      ],
+      "gallery": [
+        { "src": "media/ed3a01b776924de0bce21b691a30639c_dddd.png", "title": "Custom UAV Hexacopter", "type": "image" },
+        { "src": "media/3a18042adced4bb9bd72bdb6dea183fd_dddd.mp4", "title": "UAV Flight Test", "type": "video" },
+        { "src": "media/e77000af89834c9d99ad6771fd2aa75f_SIM1.jpg", "title": "PyBullet Simulation", "type": "image" },
+        { "src": "media/4a8943686c5c4b9a95a3aed961ae1453_SIM2.mp4", "title": "Simulation Demo", "type": "video" },
+        { "src": "media/4c25d407f76442e0a0bf34c6300dd384_stock.jpeg", "title": "Stock Analysis Dashboard", "type": "image" },
+        { "src": "media/24a1c861770c418ab0ce5a632bcf6529_ATSS.jpeg", "title": "ATS System UI", "type": "image" },
+        { "src": "media/a8b66b9377cd4423a624e7761ee85710_blog.jpeg", "title": "AI Blog Assistant", "type": "image" },
+        { "src": "media/74a404021f6d4955ad33d98c4b5b8aa7_drdo_certificate.png", "title": "DRDO Certification", "type": "image" },
+        { "src": "media/19cb1c10b09e4eee81930fec7acd3f8d_trophy.jpg", "title": "IdeaGo Competition Winner", "type": "image" },
+        { "src": "media/f5beb89c5b16484caa90a0b561b958c8_SQL.jpg", "title": "SQL Certification", "type": "image" },
+        { "src": "media/a5fa0eba18a34a3380cdb3fe6b1e9219_IBM.png", "title": "IBM AI Fundamentals", "type": "image" },
+        { "src": "media/9ece31637c22412d8bfe2bb6d95f14ff_diploma.jpg", "title": "Diploma Achievement", "type": "image" },
+        { "src": "media/3ba3210d9461406f9261e00b70b381f1_prompt.png", "title": "Prompt Robotic Simulation", "type": "image" }
+      ],
+      "articles": [
+        {
+          "title": "If Quadrupeds Are Overkill, What Actually Works? Why Drones + Machine Learning Win Surveillance",
+          "link": "https://medium.com/@MLwithAarohi/if-quadrupeds-are-overkill-what-actually-works-why-drones-machine-learning-win-surveillance-f18536215049",
+          "description": "Analyzing the efficiency of drones vs quadrupeds in surveillance tasks."
+        },
+        {
+          "title": "Quadruped Robots Are Impressive—But Do They Actually Solve Any Real-World Problems?",
+          "link": "https://medium.com/@MLwithAarohi/quadruped-robots-are-impressive-but-do-they-actually-solve-any-real-world-problems-33da6b46d0d5",
+          "description": "A critical look at the practical applications of quadruped robots."
+        },
+        {
+          "title": "AI-Powered Hexacopter Simulation for Smart People Detection",
+          "link": "https://medium.com/@aarohi.pune/ai-powered-hexacopter-simulation-for-smart-people-detection-792283ee045a",
+          "description": "Simulating drone flight dynamics and integrating AI-driven people detection."
+        },
+        {
+          "title": "AI in Robotics: Leveraging Gym for Simulation and Development",
+          "link": "https://medium.com/@aarohi.pune/ai-in-robotics-leveraging-gym-for-simulation-and-development-b15a348d870c",
+          "description": "Using OpenAI Gym for safe and cost-effective robotics development."
+        },
+        {
+          "title": "Prompt Robotic Simulation: Creating Entire Robot Environments with a Single Command",
+          "link": "https://medium.com/@aarohi.pune/prompt-robotic-simulation-creating-entire-robot-environments-with-a-single-command-3479218fda6c",
+          "description": "Generative AI for creating robotic simulation environments."
+        }
+      ],
+      "contact": {
+        "email": "aarohi.pune@gmail.com",
+        "phone": "9373087401",
+        "github": "https://github.com/aarohiin",
+        "linkedin": "https://www.linkedin.com/in/aarohi-singh-421b08318/"
+      }
+    };
 
-      fetch('data.json')
-        .then(res => res.json())
-        .then(data => {
-          const sections = ['education', 'certification', 'skills', 'achievements', 'experience', 'medium', 'projects'];
-          sections.forEach(id => {
-            const section = document.getElementById(id);
-            if (data[id]?.length) {
-              data[id].forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                  <div class="card-content-wrapper">
-                    <div class="card-content-text">
-                      <h3>${item.title || item.role || item.name || 'Item'}</h3>
-                      <p>${(item.description || '').replace(/\n/g, '<br>')}</p>
-                    </div>
-                    <div class="card-content-images">
-                      ${(item.media?.images || []).map(src => `<img src="${src}" alt="media image">`).join('')}
-                    </div>
-                  </div>
+    const loadData = () => {
+      try {
+        // Using inlined data instead of fetch
+        const data = systemData;
+
+        renderHero(data.hero);
+        renderSkills(data.skills);
+        renderProjects(data.projects);
+        renderExperience(data.experience);
+        renderArticles(data.articles);
+        renderContact(data.contact);
+        renderGallery(data.gallery);
+
+      } catch (error) {
+        console.error("Failed to load system data:", error);
+      }
+    };
+
+    const renderHero = (hero) => {
+      // Typewriter Effect
+      const text = hero.name.toUpperCase();
+      const typeContainer = document.getElementById('typewriter');
+      let i = 0;
+      const type = () => {
+        if (i < text.length) {
+          typeContainer.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 100);
+        }
+      };
+      type();
+
+      // Static Subtitle (No Cycling)
+      const subContainer = document.getElementById('hero-subtitle');
+      subContainer.textContent = `> ${hero.subtitles[0]}`;
+
+      // Stats with CountUp
+      const statsGrid = document.getElementById('stats-grid');
+      hero.stats.forEach(stat => {
+        const div = document.createElement('div');
+        div.className = 'stat-item';
+        div.innerHTML = `
+                    <div class="stat-value" data-target="${parseInt(stat.value)}">${0}</div>
+                    <div class="stat-label">${stat.label}</div>
                 `;
-                if (item.links) {
-                  item.links.forEach(link => {
-                    const a = document.createElement('a');
-                    a.href = link;
-                    a.target = '_blank';
-                    a.textContent = 'Link';
-                    card.appendChild(document.createElement('br'));
-                    card.appendChild(a);
-                  });
-                }
-                section.appendChild(card);
-              });
-            }
-          });
-        })
-        .catch(err => console.error('Error loading JSON:', err));
+        statsGrid.appendChild(div);
+      });
+
+      // Trigger Animation
+      const counters = document.querySelectorAll('.stat-value');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const suffix = counter.parentElement.querySelector('.stat-label').nextSibling ? '' : '+'; // simplified assumption
+
+        let count = 0;
+        const updateCount = () => {
+          const inc = target / 50;
+          if (count < target) {
+            count += inc;
+            counter.innerText = Math.ceil(count) + (target > 5 ? "+" : "");
+            setTimeout(updateCount, 30);
+          }
+        };
+        updateCount();
+      });
+    };
+
+    const renderSkills = (skills) => {
+      const container = document.getElementById('skills-container');
+      for (const [category, items] of Object.entries(skills)) {
+        const div = document.createElement('div');
+        div.className = 'skill-group';
+        div.innerHTML = `
+                    <h3>${category}</h3>
+                    <ul class="skill-list">
+                        ${items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                `;
+        container.appendChild(div);
+      }
+    };
+
+    const renderProjects = (projects) => {
+      const container = document.getElementById('projects-container');
+      // Merge featured and all for now, or just show featured top
+      const allProjects = [...projects.featured, ...projects.all];
+
+      allProjects.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+
+        let metricsHtml = '';
+        if (p.metrics) {
+          metricsHtml = `<div class="card-metrics"><ul>${p.metrics.map(m => `<li>${m}</li>`).join('')}</ul></div>`;
+        }
+
+        let linksHtml = '';
+        if (p.links && p.links.length) {
+          linksHtml = p.links.map(l => `<a href="${l}" target="_blank" class="btn">ACCESS CODEBASE</a>`).join(' ');
+        }
+
+        div.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${p.title}</div>
+                        <div class="card-category">${p.category || 'General'}</div>
+                    </div>
+                    <div class="card-desc">${p.description}</div>
+                    ${metricsHtml}
+                    ${linksHtml}
+                `;
+        container.appendChild(div);
+      });
+    };
+
+    const renderExperience = (exp) => {
+      const container = document.getElementById('experience-container');
+      exp.forEach(e => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${e.role}</div>
+                        <div class="card-category">${e.period}</div>
+                    </div>
+                    <div class="card-desc" style="color: var(--neural-blue); margin-bottom: 0.5rem;">@ ${e.company}</div>
+                    <div class="card-desc">${e.description}</div>
+                `;
+        container.appendChild(div);
+      });
+    };
+
+    const renderArticles = (articles) => {
+      const container = document.getElementById('articles-container');
+      articles.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title" style="font-size: 1rem;">${a.title}</div>
+                    </div>
+                    <div class="card-desc">${a.description}</div>
+                    <a href="${a.link}" target="_blank" class="btn">READ TRANSMISSION</a>
+                `;
+        container.appendChild(div);
+      });
+    };
+
+    const renderContact = (contact) => {
+      const container = document.getElementById('contact-info');
+      // ... (existing code for renderContact is separate, I am just appending)
+      container.innerHTML = `
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">${contact.email}</p>
+                <p style="margin-bottom: 2rem;">${contact.phone}</p>
+                <div style="display: flex; justify-content: center; gap: 1rem;">
+                    <a href="${contact.github}" target="_blank" class="btn">GITHUB</a>
+                    <a href="${contact.linkedin}" target="_blank" class="btn">LINKEDIN</a>
+                    <a href="mailto:${contact.email}" class="btn">EMAIL UPLINK</a>
+                </div>
+            `;
+    };
+
+    const renderGallery = (items) => {
+      const container = document.getElementById('gallery-container');
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const modalCaption = document.getElementById('modal-caption');
+      const closeModal = document.querySelector('.close-modal');
+
+      if (!container) return; // Guard clause if gallery not found
+
+      items.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.style.animationDelay = `${index * 0.1}s`;
+
+        let mediaElement;
+        if (item.type === 'video') {
+          mediaElement = `<video src="${item.src}" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`;
+        } else {
+          mediaElement = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
+        }
+
+        div.innerHTML = `
+                    ${mediaElement}
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">${item.title}</div>
+                    </div>
+                `;
+
+        // Click to Open Modal
+        div.addEventListener('click', () => {
+          modal.style.display = "flex";
+          modalCaption.textContent = item.title;
+
+          // Clear previous modal content
+          const oldContent = document.getElementById('modal-content-active');
+          if (oldContent) oldContent.remove();
+
+          let newContent;
+          if (item.type === 'video') {
+            newContent = document.createElement('video');
+            newContent.controls = true;
+            newContent.autoplay = true;
+          } else {
+            newContent = document.createElement('img');
+          }
+
+          newContent.src = item.src;
+          newContent.id = 'modal-content-active';
+          newContent.className = 'modal-content';
+
+          // Insert before caption
+          modal.insertBefore(newContent, modalCaption);
+
+          // Hide the default placeholder if exists
+          if (modalImg) modalImg.style.display = 'none';
+        });
+
+        container.appendChild(div);
+      });
+
+      // Close Modal Logic
+      closeModal.onclick = () => { closeTheModal() }
+      window.onclick = (event) => { if (event.target == modal) { closeTheModal() } }
+
+      function closeTheModal() {
+        modal.style.display = "none";
+        const v = document.querySelector('video.modal-content');
+        if (v) v.pause();
+        const active = document.getElementById('modal-content-active');
+        if (active) active.remove();
+      }
+    };
+
+    // --- 3. TAB LOGIC ---
+    window.openTab = (tabName) => {
+      const contents = document.getElementsByClassName('tab-content');
+      for (let c of contents) c.classList.remove('active');
+
+      const btns = document.getElementsByClassName('tab-btn');
+      for (let b of btns) b.classList.remove('active');
+
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    };
+
+    // --- INIT ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initVisuals();
+      loadData();
     });
+
   </script>
 </body>
+
 </html>
