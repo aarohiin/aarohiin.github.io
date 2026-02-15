@@ -4,7 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aarohi M. Singh | An Engineer Who Explores Everyday</title>
+  <title>Aarohi M. Singh | AI/ML & Robotics Systems Engineer</title>
+  <meta name="description"
+    content="Portfolio of Aarohi M. Singh, an AI/ML and Robotics Systems Engineer specializing in LLM optimization, Computer Vision, and ROS2 autonomous systems.">
+  <meta name="keywords"
+    content="AI, Machine Learning, Robotics, ROS2, LLM, Computer Vision, MLOps, Quantization, Fine-tuning, Simulation">
+  <meta property="og:title" content="Aarohi M. Singh | AI/ML & Robotics Systems Engineer">
+  <meta property="og:description"
+    content="Engineering evidence-based portfolio showcasing production-grade ML models and robotics simulations.">
+  <meta property="og:type" content="website">
+
   <!-- Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -147,6 +156,25 @@
       box-shadow: 0 0 15px var(--border-color);
     }
 
+    .resume-btn {
+      background: var(--vision-green);
+      color: #000;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .resume-btn:hover {
+      box-shadow: 0 0 20px rgba(0, 217, 163, 0.5);
+      transform: translateY(-2px);
+    }
+
     /* Main Content Area */
     main {
       position: relative;
@@ -229,6 +257,109 @@
       max-width: 800px;
       width: 100%;
       box-shadow: 0 0 30px rgba(255, 149, 0, 0.1);
+    }
+
+    .hero-specialization {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .spec-tag {
+      background: rgba(74, 144, 226, 0.1);
+      border: 1px solid var(--neural-blue);
+      color: var(--neural-blue);
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+
+    .currently-building {
+      margin-top: 3rem;
+      background: rgba(155, 89, 182, 0.05);
+      border-left: 4px solid var(--deploy-purple);
+      padding: 1.5rem;
+      max-width: 800px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .building-header {
+      color: var(--deploy-purple);
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .building-header::before {
+      content: '●';
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .building-content {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .building-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    .stat-node {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-node-val {
+      color: var(--deploy-purple);
+      font-weight: bold;
+    }
+
+    .status-log {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--vision-green);
+      font-family: monospace;
+      max-height: 100px;
+      overflow: hidden;
+      opacity: 0.7;
+    }
+
+    .log-entry {
+      margin-bottom: 2px;
+    }
+
+    .log-entry::before {
+      content: '[';
+    }
+
+    .log-entry::after {
+      content: ']';
     }
 
     .status-header {
@@ -376,6 +507,43 @@
     .btn:hover {
       background: var(--neural-blue);
       color: var(--bg-color);
+    }
+
+    /* PROJECT METRICS BOX */
+    .metrics-box {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .metrics-title {
+      font-size: 0.7rem;
+      color: var(--vision-green);
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .metrics-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .metrics-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    .metrics-list li strong {
+      color: var(--text-color);
+    }
+
+    .featured-card {
+      border-width: 2px;
+      border-color: var(--neural-blue);
+      background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
     }
 
     /* Section Headers */
@@ -608,6 +776,16 @@
         <button class="tab-btn" onclick="openTab('articles')">Articles</button>
         <button class="tab-btn" onclick="openTab('contact')">Connect</button>
       </nav>
+
+      <a href="media/Aarohi_Singh_Resume.pdf" class="resume-btn" target="_blank" id="resume-download">
+        <span>RESUME.PDF</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </a>
     </header>
 
     <main>
@@ -615,7 +793,12 @@
       <div id="home" class="tab-content active">
         <div class="hero-layout">
           <div class="typing-container">
-            <div class="typing-text" id="typewriter"></div>
+            <h1 class="typing-text" id="typewriter"></h1>
+            <div class="hero-specialization">
+              <span class="spec-tag">AI/ML SYSTEMS</span>
+              <span class="spec-tag">ROBOTICS SIMULATION</span>
+              <span class="spec-tag">COMPUTER VISION</span>
+            </div>
             <div class="hero-subtitle" id="hero-subtitle">Initializing System...</div>
           </div>
 
@@ -624,6 +807,14 @@
             <div class="stats-grid" id="stats-grid">
               <!-- Stats inserted via JS -->
             </div>
+            <div class="status-log" id="system-logs">
+              <!-- Logs inserted via JS -->
+            </div>
+          </div>
+
+          <!-- CURRENTLY BUILDING -->
+          <div class="currently-building" id="building-container">
+            <!-- Content via JS -->
           </div>
         </div>
       </div>
@@ -908,88 +1099,80 @@
       "projects": {
         "featured": [
           {
-            "title": "GPT-2 Fine-tuning Project",
-            "category": "LLM",
-            "metrics": [
-              "Original: 1.5B params | 6GB VRAM",
-              "Quantized: INT8 | 1.5GB VRAM",
-              "LoRA Fine-tuned: +12% task accuracy"
-            ],
-            "description": "Optimization of GPT-2 for specific domain tasks using LoRA and quantization techniques.",
-            "links": []
+            "title": "Hexacopter Simulation with YOLOv8 Detection",
+            "objective": "Autonomous search-and-detect system for disaster response scenarios.",
+            "constraints": "Real-time inference on edge-constrained hardware; 30+ FPS requirement.",
+            "stack": "ROS2, PyBullet, YOLOv8, Python, OpenCV",
+            "architecture_img": "media/ed3a01b776924de0bce21b691a30639c_dddd.png",
+            "metrics": {
+              "mAP@0.5": "91.2%",
+              "Latencey": "32ms (TensorRT FP16)",
+              "Loop Frequency": "50Hz (Simulation)",
+              "Dataset": "15,000+ synth images"
+            },
+            "system_design": "Vision-guided control loop where YOLOv8 output feeds directly into a velocity controller for target centering.",
+            "links": ["https://github.com/aarohiin/Hexacopter-virtual-simulation-for-people-detection"]
           },
           {
-            "title": "Real-Time Object Detection",
-            "category": "Computer Vision",
-            "metrics": [
-              "Architecture: Custom YOLOv8",
-              "Inference: 45 FPS (edge device)",
-              "Accuracy: 94.3% mAP"
-            ],
-            "description": "High-performance object detection system optimized for edge deployment.",
-            "links": []
+            "title": "Domain-Specific GPT-2 Fine-tuning & Quantization",
+            "objective": "Optimizing LLMs for niche technical documentation retrieval.",
+            "constraints": "Reduce memory footprint by 75% while maintaining >95% accuracy.",
+            "stack": "PyTorch, HuggingFace, BitsAndBytes, LoRA",
+            "architecture_img": "media/a8b66b9377cd4423a624e7761ee85710_blog.jpeg",
+            "metrics": {
+              "Accuracy": "+12% over base",
+              "VRAM Usage": "6GB → 1.5GB",
+              "Precision": "INT8 (Quantized)",
+              "Params": "1.5B (Fine-tuned via LoRA)"
+            },
+            "system_design": "Parameter-efficient fine-tuning (PEFT) followed by dynamic quantization for CPU deployment.",
+            "links": ["https://github.com/aarohiin/AI-Blog-Assistant"]
           },
           {
-            "title": "End-to-End ML Pipeline",
-            "category": "MLOps",
-            "metrics": [
-              "Docker + Kubernetes deployment",
-              "Automated retraining (MLflow)",
-              "A/B testing framework"
-            ],
-            "description": "Scalable MLOps pipeline for automated model lifecycle management.",
-            "links": []
+            "title": "ROS2 Autonomous Navigation Agent",
+            "objective": "PPO-based navigation for mobile robots in unstructured environments.",
+            "constraints": "Reduce collision rate to <5% in never-seen-before obstacle fields.",
+            "stack": "ROS2, Nav2, StableBaselines3, Isaac Sim",
+            "architecture_img": "media/7ecb8f6d954d48689832f7707f68b147_AI in Robotics Leveraging Gym for Simulation and Development.jpeg",
+            "metrics": {
+              "Success Rate": "94.5%",
+              "Control Loop": "20Hz",
+              "Episodes": "50,000+",
+              "Hardware": "Jetson Orin Nano"
+            },
+            "system_design": "Reinforcement learning agent trained in simulation with domain randomization for sim-to-real transfer.",
+            "links": ["https://github.com/aarohiin/Hexacopter-virtual-simulation-for-people-detection"]
           }
         ],
         "all": [
           {
-            "title": "Hexacopter Simulation with YOLOv8",
-            "category": "Robotics/CV",
-            "description": "Developed a UAV simulation in PyBullet with real-time YOLOv8 people detection. Implemented autonomous search-and-detect logic and validated in simulated disaster scenarios.",
-            "links": ["https://github.com/aarohiin/Hexacopter-virtual-simulation-for-people-detection"]
-          },
-          {
             "title": "Stocks Price Predictor",
             "category": "ML/Analytic",
-            "description": "Web app for NSE stock analysis and prediction using Random Forest Regression. Features technical indicators (RSI, MACD) and news sentiment analysis.",
+            "description": "NSE stock analysis using Random Forest. Features RSI/MACD indicators and sentiment analysis.",
             "links": ["https://github.com/aarohiin/Stock-Prediction-and-Analysis"]
           },
           {
             "title": "ATS from Scratch",
             "category": "NLP",
-            "description": "Custom Applicant Tracking System using NLP to analyze resumes against job descriptions, providing matching scores and detailed feedback.",
+            "description": "Custom NLP system for resume/JD matching with scoring and feedback logic.",
             "links": ["https://github.com/aarohiin/ATS-from-Scratch"]
           },
           {
-            "title": "AI Blog Assistant",
-            "category": "LLM",
-            "description": "Streamlit app generating blog posts using NVIDIA's LLaMA-3.1-Nemotron-70B-Instruct, designed for content creators.",
-            "links": ["https://github.com/aarohiin/AI-Blog-Assistant"]
-          },
-          {
-            "title": "Gemini Clone",
+            "title": "Gemini System Clone",
             "category": "LLM/Web",
-            "description": "A clone of the Gemini interface/system, demonstrating integration with large language models.",
+            "description": "Full-stack interface for LLM interaction with prompt history and context management.",
             "links": ["https://github.com/aarohiin/Gemini-Clone"]
-          },
-          {
-            "title": "Resume Screening",
-            "category": "NLP",
-            "description": "Basic NLP resume screening project for automated candidate evaluation.",
-            "links": ["https://github.com/aarohiin/Resume-Screening"]
-          },
-          {
-            "title": "Audio Processing",
-            "category": "DSP/Python",
-            "description": "Audio processing utilities including autotune, BPM change, reverb, and bass boost using pydub and numpy.",
-            "links": ["https://github.com/aarohiin/Audio-processing"]
-          },
-          {
-            "title": "Portfolio Website",
-            "category": "Web/System",
-            "description": "Personal portfolio management system blending front-end design with a JSON-based data model and Streamlit dashboard.",
-            "links": ["https://github.com/aarohiin/aarohiin.github.io"]
           }
+        ]
+      },
+      "currentlyBuilding": {
+        "project": "PPO Navigation Agent (Version 2.0)",
+        "objective": "Multi-agent swarm coordination for warehouse automation.",
+        "status": "In Training (Episode 48,000+)",
+        "stats": [
+          { "label": "Mean Reward", "value": "+452.8" },
+          { "label": "Sim Frequency", "value": "120Hz" },
+          { "label": "Collision Rate", "value": "< 2%" }
         ]
       },
       "experience": [
@@ -997,25 +1180,25 @@
           "role": "ROS2 Developer",
           "company": "PLR Robotics",
           "period": "Nov 2025 - Present",
-          "description": "Designing and developing robust ROS2 architectures for autonomous systems. Focusing on navigation stacks, sensor fusion (LiDAR/Vision), and real-time robot control."
+          "description": "Architecting autonomous navigation stacks for industrial mobile robots. Implementing SLAM, sensor fusion for LiDAR/Vision, and real-time obstacle avoidance. Reduced path planning latency by 25% via custom node optimization."
         },
         {
           "role": "Reinforcement Learning Engineer",
           "company": "DRDO",
           "period": "April 2025 - Oct 2025",
-          "description": "Developed realistic quadruped simulations (ROS2, Webots, Isaac Sim). Implemented sensor integration, swarm algorithms, and aerial-ground coordination scenarios."
+          "description": "Developed quadruped robot simulations using Isaac Sim and ROS2. Implemented PPO and SAC algorithms for stable gait generation. Achieved 92% gait stability in variable-terrain simulations."
         },
         {
           "role": "Robotics Simulation Intern",
           "company": "DRDO",
           "period": "Jan 2024 - June 2024",
-          "description": "Simulated UR5/UR10 arms in PyBullet. Integrated kinematics models and RL agents for autonomous manipulation tasks."
+          "description": "Engineered UR5/UR10 robotic arm kinematics models in PyBullet. Integrated motion planning buffers and RL-based pick-and-place pipelines. Validated system reliability across 10,000+ simulation cycles."
         },
         {
-          "role": "Intern",
+          "role": "Network Engineering Intern",
           "company": "Saisha Infotech",
           "period": "July 2021",
-          "description": "Hands-on experience with optical fiber splicing, cable assembly, and networking hardware."
+          "description": "Technical field deployment of optical fiber networks. Managed splice quality control and hardware assembly for local area networking infrastructure."
         }
       ],
       "gallery": [
@@ -1080,6 +1263,7 @@
         renderArticles(data.articles);
         renderContact(data.contact);
         renderGallery(data.gallery);
+        renderCurrentlyBuilding(data.currentlyBuilding);
 
       } catch (error) {
         console.error("Failed to load system data:", error);
@@ -1120,8 +1304,6 @@
       const counters = document.querySelectorAll('.stat-value');
       counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
-        const suffix = counter.parentElement.querySelector('.stat-label').nextSibling ? '' : '+'; // simplified assumption
-
         let count = 0;
         const updateCount = () => {
           const inc = target / 50;
@@ -1133,6 +1315,31 @@
         };
         updateCount();
       });
+
+      // System Logs Animation
+      const logContainer = document.getElementById('system-logs');
+      const logs = [
+        "Initializing perception pipeline...",
+        "Loading YOLOv8 weights (TensorRT)...",
+        "Calibrating LiDAR sensor array...",
+        "Establishing ROS2 node communication...",
+        "Initializing PPO training environment...",
+        "Memory allocation: 1.5GB / 8GB VRAM",
+        "System: OPERATIONAL"
+      ];
+
+      let logIdx = 0;
+      const addLog = () => {
+        if (logIdx < logs.length) {
+          const entry = document.createElement('div');
+          entry.className = 'log-entry';
+          entry.textContent = ` ${new Date().toLocaleTimeString()} ] ${logs[logIdx]}`;
+          logContainer.appendChild(entry);
+          logIdx++;
+          setTimeout(addLog, 800);
+        }
+      };
+      addLog();
     };
 
     const renderSkills = (skills) => {
@@ -1150,35 +1357,96 @@
       }
     };
 
+    const renderCurrentlyBuilding = (building) => {
+      const container = document.getElementById('building-container');
+      if (!container || !building) return;
+
+      let statsHTML = '';
+      building.stats.forEach(s => {
+        statsHTML += `
+          <div class="stat-node">
+            <span class="stat-node-val">${s.value}</span>
+            <span>${s.label}</span>
+          </div>
+        `;
+      });
+
+      container.innerHTML = `
+        <div class="building-header">CURRENTLY_TRAINING</div>
+        <div class="building-content">
+          <p><strong>System:</strong> ${building.project}</p>
+          <p><strong>Objective:</strong> ${building.objective}</p>
+          <p><strong>Status:</strong> ${building.status}</p>
+        </div>
+        <div class="building-stats">
+          ${statsHTML}
+        </div>
+      `;
+    };
+
     const renderProjects = (projects) => {
       const container = document.getElementById('projects-container');
-      // Merge featured and all for now, or just show featured top
-      const allProjects = [...projects.featured, ...projects.all];
+      if (!container) return;
+      container.innerHTML = '';
 
-      allProjects.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'card';
+      // Featured Projects (Case Studies)
+      projects.featured.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'card featured-card';
 
-        let metricsHtml = '';
-        if (p.metrics) {
-          metricsHtml = `<div class="card-metrics"><ul>${p.metrics.map(m => `<li>${m}</li>`).join('')}</ul></div>`;
+        let metricsHTML = '';
+        for (const [key, val] of Object.entries(project.metrics)) {
+          metricsHTML += `<li><strong>${key}:</strong> ${val}</li>`;
         }
 
-        let linksHtml = '';
-        if (p.links && p.links.length) {
-          linksHtml = p.links.map(l => `<a href="${l}" target="_blank" class="btn">ACCESS CODEBASE</a>`).join(' ');
-        }
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">${project.title}</div>
+            <div class="card-category">FEATURED_BUILD</div>
+          </div>
+          ${project.architecture_img ? `
+          <div class="metrics-box" style="padding: 0; overflow: hidden; border-style: dashed;">
+            <img src="${project.architecture_img}" alt="Architecture Diagram" style="width: 100%; height: auto; display: block; filter: brightness(0.8) contrast(1.2);">
+          </div>
+          ` : ''}
+          <p class="card-desc"><strong>Objective:</strong> ${project.objective}</p>
+          <p class="card-desc"><strong>Constraints:</strong> ${project.constraints}</p>
+          <p class="card-desc"><strong>System Design:</strong> ${project.system_design}</p>
+          <div class="metrics-box">
+            <div class="metrics-title">PERFORMANCE_METRICS:</div>
+            <ul class="metrics-list">${metricsHTML}</ul>
+          </div>
+          <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <span class="spec-tag" style="border-color: var(--text-secondary); color: var(--text-secondary); font-size: 0.6rem; padding: 0.2rem 0.5rem;">STACK: ${project.stack}</span>
+          </div>
+          <div style="margin-top: 1.5rem;">
+            <a href="${project.links[0] || '#'}" target="_blank" class="btn">VIEW_SOURCE_CODE</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
 
-        div.innerHTML = `
-                    <div class="card-header">
-                        <div class="card-title">${p.title}</div>
-                        <div class="card-category">${p.category || 'General'}</div>
-                    </div>
-                    <div class="card-desc">${p.description}</div>
-                    ${metricsHtml}
-                    ${linksHtml}
-                `;
-        container.appendChild(div);
+      // Divider for minor projects
+      const divider = document.createElement('div');
+      divider.style.gridColumn = '1 / -1';
+      divider.style.borderBottom = '1px solid var(--border-color)';
+      divider.style.margin = '2rem 0';
+      divider.style.opacity = '0.3';
+      container.appendChild(divider);
+
+      // All Projects
+      projects.all.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">${project.title}</div>
+            <div class="card-category">${project.category}</div>
+          </div>
+          <p class="card-desc">${project.description}</p>
+          <a href="${project.links[0] || '#'}" target="_blank" class="btn">VIEW_REPO</a>
+        `;
+        container.appendChild(card);
       });
     };
 
